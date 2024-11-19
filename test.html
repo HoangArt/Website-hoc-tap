@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background-color: #EDDCD9;
+            border: 2px solid #264143;
+            border-radius: 20px;
+            box-shadow: 3px 4px 0px 1px #E99F4C;
+            width: 380px;
+            padding: 30px;
+            text-align: center;
+        }
+        .toggle-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .toggle-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 15px;
+            cursor: pointer;
+            color: #264143;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        .toggle-btn.active {
+            opacity: 1;
+            border-bottom: 3px solid #DE5499;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #264143;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #264143;
+            border-radius: 4px;
+            font-size: 15px;
+            box-shadow: 3px 4px 0px 1px #E99F4C;
+        }
+        .form-control:focus {
+            outline: none;
+            transform: translateY(4px);
+            box-shadow: 1px 2px 0px 0px #E99F4C;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #DE5499;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            box-shadow: 3px 3px 0px 0px #E99F4C;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        #signup-form {
+            display: none;
+        }
+        .role-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #264143;
+            border-radius: 4px;
+            font-size: 15px;
+            box-shadow: 3px 4px 0px 1px #E99F4C;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="toggle-buttons">
+            <button class="toggle-btn active" onclick="showLogin()">Đăng Nhập</button>
+            <button class="toggle-btn" onclick="showSignup()">Đăng Ký</button>
+        </div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-username">Tài khoản</label>
+                <input type="text" class="form-control" id="login-username" placeholder="Email hoặc số điện thoại" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Mật khẩu</label>
+                <input type="password" class="form-control" id="login-password" placeholder="Nhập mật khẩu" required>
+            </div>
+            <button type="submit" class="btn">ĐĂNG NHẬP</button>
+            <p style="margin-top: 15px;"><a href="#" style="color: #264143;">Quên mật khẩu?</a></p>
+        </form>
+
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="signup-fullname">Họ tên</label>
+                <input type="text" class="form-control" id="signup-fullname" placeholder="Nhập họ và tên" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-role">Chức vụ</label>
+                <select class="role-select" id="signup-role" required>
+                    <option value="">Chọn chức vụ</option>
+                    <option value="teacher">Giáo viên</option>
+                    <option value="student">Học sinh</option>
+                    <option value="parent">Phụ huynh</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="signup-birthdate">Ngày sinh</label>
+                <input type="date" class="form-control" id="signup-birthdate" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-contact">Email hoặc Số điện thoại</label>
+                <input type="text" class="form-control" id="signup-contact" placeholder="Nhập email hoặc số điện thoại" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Mật khẩu</label>
+                <input type="password" class="form-control" id="signup-password" placeholder="Nhập mật khẩu" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm-password">Nhập lại mật khẩu</label>
+                <input type="password" class="form-control" id="signup-confirm-password" placeholder="Nhập lại mật khẩu" required>
+            </div>
+            <button type="submit" class="btn">ĐĂNG KÝ</button>
+        </form>
+    </div>
+
+    <script>
+        function showLogin() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('signup-form').style.display = 'none';
+            document.querySelector('.toggle-buttons').children[0].classList.add('active');
+            document.querySelector('.toggle-buttons').children[1].classList.remove('active');
+        }
+
+        function showSignup() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+            document.querySelector('.toggle-buttons').children[0].classList.remove('active');
+            document.querySelector('.toggle-buttons').children[1].classList.add('active');
+        }
+    </script>
+</body>
+</html>

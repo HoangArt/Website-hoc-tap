@@ -1,4 +1,13 @@
 <?php
+// Kiểm tra nếu người dùng đã đăng nhập chưa
+session_start();
+
+if (isset($_SESSION['username'])) {
+    $_SESSION['message'] = "Bạn đã đăng nhập rồi!";
+    header("Location: index.php");
+    exit();
+}
+
 include("db.php");
 
 // Khởi tạo biến thông báo lỗi
@@ -267,17 +276,17 @@ $conn->close();
 
             // Thay đổi ảnh dựa trên vai trò
             switch (selectedRole) {
-                case 'student': // Học sinh
+                case 'student':
                     roleImage.src = 'img/student.jpg';
                     roleImage.alt = 'Học sinh';
                     break;
-                case 'teacher': // Giáo viên
+                case 'teacher':
                     roleImage.src = 'img/teacher.jpg';
                     roleImage.alt = 'Giáo viên';
                     break;
-                case 'parent': // Giáo viên
-                    roleImage.src = 'img/teacher.jpg';
-                    roleImage.alt = 'Giáo viên';
+                case 'parent':
+                    roleImage.src = 'img/parent.jpg';
+                    roleImage.alt = 'Phụ huynh';
                     break;
             }
         });

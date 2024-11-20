@@ -2,6 +2,13 @@
 session_start();
 include("db.php");  // Đảm bảo kết nối cơ sở dữ liệu đã được thực hiện trong db.php
 
+// Kiểm tra nếu người dùng đã đăng nhập chưa
+if (isset($_SESSION['username'])) {
+    $_SESSION['message'] = "Bạn đã đăng nhập rồi!";
+    header("Location: index.php");
+    exit();
+}
+
 // Khởi tạo biến thông báo lỗi
 $error_message = "";
 
@@ -21,29 +28,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 FROM users u
                 JOIN roles r ON u.role_id = r.id
                 WHERE u.contact_info = ? AND r.role_name = ?";
-        
+
         // Chuẩn bị câu lệnh SQL
         if ($stmt = $conn->prepare($sql)) {
             // Gán giá trị tham số vào câu lệnh SQL
             $stmt->bind_param("ss", $username, $role);
-            
+
             // Thực thi câu lệnh
             if ($stmt->execute()) {
                 $stmt->store_result();
-                
+
                 // Nếu có người dùng khớp với thông tin
                 if ($stmt->num_rows == 1) {
                     // Liên kết kết quả
                     $stmt->bind_result($user_id, $full_name, $hashed_password, $role_name);
                     $stmt->fetch();
-                    
+
                     // Kiểm tra mật khẩu
                     if (password_verify($password, $hashed_password)) {
                         // Lưu thông tin người dùng vào session
                         $_SESSION['user_id'] = $user_id;
+                        $_SESSION['username'] = $username;
                         $_SESSION['full_name'] = $full_name;
                         $_SESSION['role_name'] = $role_name;
-                        
+
                         // Chuyển hướng đến trang chính
                         header("Location: index.php");
                         exit();
@@ -57,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Nếu câu lệnh không thực thi được
                 $error_message = "<p class='text-center text-danger'>Lỗi: " . $stmt->error . "</p>";
             }
-            
+
             // Đóng kết nối
             $stmt->close();
         } else {
@@ -156,6 +164,17 @@ if (isset($_GET['signup']) && $_GET['signup'] == 'success') {
             color: #264143;
         }
 
+        /* HÌNH ẢNH */
+        /* Đặt kích thước tối đa cho hình ảnh để không làm thay đổi bố cục */
+        #roleImage {
+            max-height: 500px;
+            max-width: 100%; /* Đảm bảo ảnh không vượt quá khung */
+            object-fit: cover; /* Duy trì tỷ lệ ảnh mà không làm méo */
+            margin: auto; /* Căn giữa */
+        }
+
+
+
         .h-custom {
             height: calc(100% - 73px);
         }
@@ -195,14 +214,18 @@ if (isset($_GET['signup']) && $_GET['signup'] == 'success') {
         <!-- HÌNH ẢNH -->
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
+                <!-- HÌNH ẢNH -->
                 <div class="col-md-9 col-lg-6 col-xl-5">
                     <img id="roleImage" src="img/dangNhap.jpg" class="img-fluid" alt="Đăng nhập">
                 </div>
 
+                <!-- CỘT FORM -->
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                         <a href="index.php" class="back-link">&larr; Quay lại trang chủ</a><br>
-                        <div id="loginTitle"><h3>Đăng nhập tài khoản</h3></div>
+                        <div id="loginTitle">
+                            <h3>Đăng nhập tài khoản</h3>
+                        </div>
 
                         <div class="divider d-flex align-items-center my-4" style="border-top: 2px solid #DE5499;"></div>
 
@@ -271,17 +294,17 @@ if (isset($_GET['signup']) && $_GET['signup'] == 'success') {
 
             // Thay đổi ảnh dựa trên vai trò
             switch (selectedRole) {
-                case '1': // Học sinh
+                case 'student':
                     roleImage.src = 'img/student.jpg';
                     roleImage.alt = 'Học sinh';
                     break;
-                case '2': // Giáo viên
+                case 'teacher':
                     roleImage.src = 'img/teacher.jpg';
                     roleImage.alt = 'Giáo viên';
                     break;
-                default: // Mặc định
-                    roleImage.src = 'img/default.jpg';
-                    roleImage.alt = 'Mặc định';
+                case 'parent':
+                    roleImage.src = 'img/parent.jpg';
+                    roleImage.alt = 'Phụ huynh';
                     break;
             }
         });

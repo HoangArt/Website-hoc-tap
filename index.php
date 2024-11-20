@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+// Nếu người dùng đã đăng nhập nhưng lại vào login.php hoặc signup.php
+if (isset($_SESSION['message'])) {
+    echo "<script>
+        alert('" . htmlspecialchars($_SESSION['message'], ENT_QUOTES) . "');
+    </script>";
+    unset($_SESSION['message']); // Xóa thông báo sau khi hiển thị
+}
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +100,7 @@ session_start();
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="img/user.png" alt="User">
-                                    <h4><?= htmlspecialchars($_SESSION['username']); ?></h4>
+                                    <h4><?= htmlspecialchars($_SESSION['full_name']); ?></h4>
                                 </div>
                                 <a href="user_settings.php">Cài đặt tài khoản</a>
                                 <a href="logout.php">Đăng xuất</a>

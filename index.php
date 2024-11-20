@@ -79,20 +79,27 @@ if (isset($_SESSION['message'])) {
 
 <body>
     <!-- HEADER -->
-    <header class="p-3 bg-white">
+    <header class="p-3 mb-3 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <!-- LOGO -->
                 <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <p>Herculis</p>
+                    <img src="img/Herculis_logo.png" class="bi me-2" height="32" role="img" aria-label="Bootstrap">
                 </a>
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-dark">Khám phá</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Phương pháp học</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Diễn đàn</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Liên lạc</a></li>
+                </ul>
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark w-100 w-lg-50" placeholder="Tìm kiếm..."
-                        aria-label="Search">
+                <!-- Ô TÌM KIẾM -->
+                <form class="col-4 mb-3 mb-lg-0 me-lg-5" id="searchbox">
+                    <input type="search" class="form-control border border-3" placeholder="Tìm kiếm khóa học..." aria-label="Search">
                 </form>
 
+                <!-- USER -->
                 <div class="text-end position-relative">
                     <?php if (isset($_SESSION['username'])): ?>
                         <img src="img/user.png" class="user-pic" id="userPic">
@@ -115,6 +122,9 @@ if (isset($_SESSION['message'])) {
             </div>
         </div>
     </header>
+
+
+
 
     <!-- FOOTER -->
     <footer class="site-footer">

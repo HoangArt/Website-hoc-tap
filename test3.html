@@ -1,0 +1,328 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kids Learning</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        /* styles.css */
+        /* Base Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Navigation */
+        .nav-link {
+            @apply hover:text-pink-100 transition-colors duration-200;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            @apply bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 inline-block;
+        }
+
+        .btn-secondary {
+            @apply bg-white hover:bg-pink-100 text-pink-500 font-bold py-3 px-6 rounded-lg border-2 border-pink-500 transition-colors duration-200 inline-block;
+        }
+
+        /* Cards */
+        .feature-card {
+            @apply bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-200;
+        }
+
+        .course-card {
+            @apply bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200;
+        }
+
+        /* Section Titles */
+        .section-title {
+            @apply text-3xl font-bold mb-8 text-pink-600 text-center;
+        }
+
+        /* Forms */
+        .form-input {
+            @apply w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-pink-500;
+        }
+
+        .form-checkbox {
+            @apply text-pink-500 rounded focus:ring-pink-500;
+        }
+
+        /* Modal */
+        .modal {
+            @apply fixed inset-0 z-50 overflow-y-auto;
+        }
+
+        .modal-overlay {
+            @apply fixed inset-0 bg-black bg-opacity-50;
+        }
+
+        .modal-container {
+            @apply flex items-center justify-center min-h-screen p-4;
+        }
+
+        .modal-content {
+            @apply bg-white rounded-lg shadow-xl w-full max-w-md mx-auto;
+        }
+
+        .modal-header {
+            @apply flex justify-between items-center p-6 border-b;
+        }
+
+        .modal-body {
+            @apply p-6;
+        }
+
+        .modal-close {
+            @apply text-gray-400 hover:text-gray-500 text-2xl font-bold;
+        }
+
+        /* Tabs */
+        .tab-buttons {
+            @apply flex border-b mb-6;
+        }
+
+        .tab-btn {
+            @apply px-4 py-2 font-bold;
+        }
+
+        .tab-btn.active {
+            @apply text-pink-500 border-b-2 border-pink-500;
+        }
+
+        .tab-content {
+            @apply hidden;
+        }
+
+        .tab-content.active {
+            @apply block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                @apply px-4;
+            }
+        }
+        
+    </style>
+</head>
+
+<body class="bg-pink-50">
+    <!-- Header -->
+    <header class="bg-pink-300 bg-opacity-75 text-white p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold hover:text-pink-100">Kids Learning</a>
+            <nav>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="pages/courses.html" class="nav-link">Courses</a></li>
+                    <li><a href="pages/learning.html" class="nav-link">Learning Process</a></li>
+                    <li><a href="pages/forum.html" class="nav-link">Forum</a></li>
+                    <li><a href="pages/about.html" class="nav-link">About Us</a></li>
+                    <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+                    <li>
+                        <button id="loginBtn"
+                            class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </li>
+                </ul>
+                <button id="mobileMenuBtn" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden">
+            <ul class="bg-pink-300 mt-4 p-4 space-y-4">
+                <li><a href="index.html" class="block nav-link">Home</a></li>
+                <li><a href="pages/courses.html" class="block nav-link">Courses</a></li>
+                <li><a href="pages/learning.html" class="block nav-link">Learning Process</a></li>
+                <li><a href="pages/forum.html" class="block nav-link">Forum</a></li>
+                <li><a href="pages/about.html" class="block nav-link">About Us</a></li>
+                <li><a href="pages/contact.html" class="block nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto mt-8 px-4">
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-pink-600">
+                Welcome to Kids Learning
+            </h1>
+            <p class="text-xl text-pink-700 mb-8">
+                Making learning fun and interactive for children of all ages
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="pages/courses.html" class="btn-primary">
+                    Start Learning
+                </a>
+                <a href="pages/about.html" class="btn-secondary">
+                    Learn More
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="feature-card">
+                <i class="fas fa-book text-4xl text-pink-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Interactive Lessons</h3>
+                <p>Engaging content that makes learning fun and memorable</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-trophy text-4xl text-pink-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Track Progress</h3>
+                <p>Monitor your child's learning journey with detailed analytics</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-users text-4xl text-pink-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Community Support</h3>
+                <p>Connect with other parents and educators</p>
+            </div>
+        </section>
+
+        <!-- Popular Courses -->
+        <section class="mb-12">
+            <h2 class="section-title">Popular Courses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course cards will be dynamically loaded -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-pink-300 bg-opacity-75 text-white mt-12">
+        <div class="container mx-auto py-8 px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Kids Learning</h3>
+                    <p class="mb-4">Making education fun and accessible for every child.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-pink-100"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-pink-100"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-pink-100"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="pages/courses.html" class="hover:text-pink-100">Courses</a></li>
+                        <li><a href="pages/forum.html" class="hover:text-pink-100">Forum</a></li>
+                        <li><a href="pages/about.html" class="hover:text-pink-100">About Us</a></li>
+                        <li><a href="pages/contact.html" class="hover:text-pink-100">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-pink-100">Help Center</a></li>
+                        <li><a href="#" class="hover:text-pink-100">FAQs</a></li>
+                        <li><a href="#" class="hover:text-pink-100">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-pink-100">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p class="mb-4">Subscribe to get updates on new courses and features.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Enter your email"
+                            class="px-4 py-2 rounded-l focus:outline-none text-gray-700 w-full" />
+                        <button type="submit" class="bg-pink-500 hover:bg-pink-600 px-4 py-2 rounded-r">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-pink-200 mt-8 pt-8 text-center">
+                <p>© 2024 Kids Learning. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-2xl font-bold">Login to Your Account</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="login">Login</button>
+                        <button class="tab-btn" data-tab="register">Register</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <div id="loginForm" class="tab-content active">
+                        <form class="space-y-4">
+                            <div>
+                                <label for="loginEmail">Email</label>
+                                <input type="email" id="loginEmail" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="loginPassword">Password</label>
+                                <input type="password" id="loginPassword" class="form-input" required>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox">
+                                    <span class="ml-2">Remember me</span>
+                                </label>
+                                <a href="#" class="text-pink-600 hover:text-pink-800">Forgot Password?</a>
+                            </div>
+                            <button type="submit" class="btn-primary w-full">Login</button>
+                        </form>
+                    </div>
+
+                    <!-- Register Form -->
+                    <div id="registerForm" class="tab-content hidden">
+                        <form class="space-y-4">
+                            <div>
+                                <label for="registerName">Full Name</label>
+                                <input type="text" id="registerName" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="registerEmail">Email</label>
+                                <input type="email" id="registerEmail" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="registerPassword">Password</label>
+                                <input type="password" id="registerPassword" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="registerConfirmPassword">Confirm Password</label>
+                                <input type="password" id="registerConfirmPassword" class="form-input" required>
+                            </div>
+                            <button type="submit" class="btn-primary w-full">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>// Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal Functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');</script>
+</body>
+
+</html>

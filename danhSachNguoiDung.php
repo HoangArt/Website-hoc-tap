@@ -3,7 +3,7 @@
 include("db.php");
 
 // Truy vấn để lấy danh sách người dùng
-$sql = "SELECT u.id, u.full_name, u.date_of_birth, u.contact_info, r.role_name FROM users u JOIN roles r ON u.role_id = r.id";
+$sql = "SELECT u.id, u.full_name, u.date_of_birth, u.email, r.role_name FROM users u JOIN roles r ON u.role_id = r.id";
 $result = $conn->query($sql);
 
 // Kiểm tra xem có kết quả không
@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
                 <td>" . $row["id"] . "</td>
                 <td>" . $row["full_name"] . "</td>
                 <td>" . $row["date_of_birth"] . "</td>
-                <td>" . $row["contact_info"] . "</td>
+                <td>" . $row["email"] . "</td>
                 <td>" . $row["role_name"] . "</td>
               </tr>";
     }

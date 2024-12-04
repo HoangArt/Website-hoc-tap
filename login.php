@@ -9,6 +9,13 @@ if (isset($_SESSION['username'])) {
     exit();
 }
 
+// Kiểm tra thông báo thay đổi mật khẩu
+if (isset($_SESSION['password_changed']) && $_SESSION['password_changed'] == true) {
+    echo "<p class='text-center text-success'>Mật khẩu của bạn đã được thay đổi thành công. Hãy đăng nhập lại!</p>";
+    // Xóa thông báo sau khi hiển thị
+    unset($_SESSION['password_changed']);
+}
+
 // Khởi tạo biến thông báo lỗi
 $error_message = "";
 
@@ -21,13 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Kiểm tra xem các trường có rỗng hay không
     if (empty($username) || empty($password) || empty($role)) {
-        $error_message = "<p class='text-center text-danger'>Vui lòng nhập đầy đủ thông tin (username, password, và role).</p>";
+        $error_message = "<p class='text-center text-danger'>Vui lòng nhập đầy đủ thông tin (vai trò, email và mật khẩu).</p>";
     } else {
         // Truy vấn cơ sở dữ liệu để xác thực thông tin đăng nhập
         $sql = "SELECT u.id, u.full_name, u.password, r.role_name
                 FROM users u
                 JOIN roles r ON u.role_id = r.id
-                WHERE u.contact_info = ? AND r.role_name = ?";
+                WHERE u.email = ? AND r.role_name = ?";
 
         // Chuẩn bị câu lệnh SQL
         if ($stmt = $conn->prepare($sql)) {
@@ -56,10 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: index.php");
                         exit();
                     } else {
-                        $error_message = "<p class='text-center text-danger'>Sai mật khẩu.</p>";
+                        $error_message = "<p class='text-center text-danger'>Sai thông tin đăng nhập. Vui lòng nhập lại!</p>";
                     }
                 } else {
-                    $error_message = "<p class='text-center text-danger'>Không tìm thấy người dùng với thông tin này.</p>";
+                    $error_message = "<p class='text-center text-danger'>Không tìm thấy người dùng với thông tin này trong hệ thống.</p>";
                 }
             } else {
                 // Nếu câu lệnh không thực thi được
@@ -79,8 +86,8 @@ $conn->close();
 ?>
 
 <?php
-// Kiểm tra nếu tham số 'signup' trong URL có giá trị 'success'
-if (isset($_GET['signup']) && $_GET['signup'] == 'success') {
+// Kiểm tra nếu tham số 'register' trong URL có giá trị 'success'
+if (isset($_GET['register']) && $_GET['register'] == 'success') {
     echo "<p class='text-center text-warning'>Cảnh báo: Bạn đã đăng ký thành công! Hãy đăng nhập ngay bây giờ.</p>";
 }
 ?>
@@ -245,7 +252,7 @@ if (isset($_GET['signup']) && $_GET['signup'] == 'success') {
                             <label for="">Tài khoản:</label>
                             <div data-mdb-input-init class="form-outline mb-4">
                                 <input name="username" type="text" id="form3Example3" class="form-control form-control-lg border border-2 border-dark rounded-2"
-                                    placeholder="Email hoặc số điện thoại" />
+                                    placeholder="Nhập email" />
                             </div>
                         </div>
 
@@ -265,7 +272,7 @@ if (isset($_GET['signup']) && $_GET['signup'] == 'success') {
                                 <label class="form-check-label" for="form2Example3">Ghi nhớ tài khoản</label>
                             </div>
 
-                            <a href="reset-password.php" class="text-body">Quên mật khẩu?</a>
+                            <a href="forgot-password.php" class="text-body">Quên mật khẩu?</a>
                         </div>
 
                         <div class="text-center text-lg-start mt-4 pt-2">
@@ -276,7 +283,7 @@ if (isset($_GET['signup']) && $_GET['signup'] == 'success') {
                             <button type="submit" data-mdb-button-init data-mdb-ripple-init
                                 class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem; background-color: #DE5499; border-color: #DE5499" id="loginButton">Đăng
                                 nhập</button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Bạn chưa có tài khoản? <a href="signup.php"
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Bạn chưa có tài khoản? <a href="register.php"
                                     class="link-danger">Đăng ký ngay!</a></p>
                         </div>
 

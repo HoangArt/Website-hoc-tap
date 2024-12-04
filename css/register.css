@@ -1,0 +1,77 @@
+/* FORM */
+form {
+    background-color: #EDDCD9;
+    border: 2px solid #264143;
+    border-radius: 20px;
+    /* Bo góc cho form */
+    padding: 20px;
+    box-shadow: 3px 4px 0px 1px #E99F4C;
+    /* Hiệu ứng đổ bóng */
+}
+
+.form-control,
+.form-select {
+    box-shadow: 3px 4px 0px 1px #E99F4C;
+    border: 1px solid #ccc;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    outline: none;
+    transform: translateY(4px);
+    box-shadow: 1px 2px 0px 0px #E99F4C;
+}
+
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+
+/* NÚT */
+#loginButton {
+    box-shadow: 3px 4px 0px 1px #D62980;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* NÚT GÓP Ý */
+#feedbackButton {
+    box-shadow: 3px 4px 0px 1px #E99F4C;
+    border: 2px solid #264143;
+    border-radius: 4px;
+}
+
+#feedbackButton:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* NÚT QUAY LẠI TRANG CHỦ */
+.back-link {
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+/* NHẴN ĐĂNG NHẬP */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #264143;
+}
+
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+    }
+}

@@ -3,7 +3,7 @@ session_start();
 include("db.php");  // Đảm bảo kết nối cơ sở dữ liệu đã được thực hiện trong db.php
 
 // Kiểm tra nếu người dùng đã đăng nhập chưa
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['email'])) {
     $_SESSION['message'] = "Bạn đã đăng nhập rồi!";
     header("Location: index.php");
     exit();
@@ -11,9 +11,12 @@ if (isset($_SESSION['username'])) {
 
 // Kiểm tra thông báo thay đổi mật khẩu
 if (isset($_SESSION['password_changed']) && $_SESSION['password_changed'] == true) {
-    echo "<p class='text-center text-success'>Mật khẩu của bạn đã được thay đổi thành công. Hãy đăng nhập lại!</p>";
-    // Xóa thông báo sau khi hiển thị
-    unset($_SESSION['password_changed']);
+    echo "<script>
+        window.onload = function() {
+            alert('Mật khẩu của bạn đã được thay đổi thành công! Hãy đăng nhập lại.');
+        };
+    </script>";
+    unset($_SESSION['password_changed']); // Xóa session sau khi hiển thị
 }
 
 // Khởi tạo biến thông báo lỗi
@@ -22,12 +25,12 @@ $error_message = "";
 // Kiểm tra xem form có được gửi không
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lấy giá trị từ form đăng nhập
-    $username = $_POST['username'] ?? '';
+    $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $role = $_POST['role'] ?? '';
 
     // Kiểm tra xem các trường có rỗng hay không
-    if (empty($username) || empty($password) || empty($role)) {
+    if (empty($email) || empty($password) || empty($role)) {
         $error_message = "<p class='text-center text-danger'>Vui lòng nhập đầy đủ thông tin (vai trò, email và mật khẩu).</p>";
     } else {
         // Truy vấn cơ sở dữ liệu để xác thực thông tin đăng nhập
@@ -39,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Chuẩn bị câu lệnh SQL
         if ($stmt = $conn->prepare($sql)) {
             // Gán giá trị tham số vào câu lệnh SQL
-            $stmt->bind_param("ss", $username, $role);
+            $stmt->bind_param("ss", $email, $role);
 
             // Thực thi câu lệnh
             if ($stmt->execute()) {
@@ -55,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (password_verify($password, $hashed_password)) {
                         // Lưu thông tin người dùng vào session
                         $_SESSION['user_id'] = $user_id;
-                        $_SESSION['username'] = $username;
+                        $_SESSION['email'] = $email;
                         $_SESSION['full_name'] = $full_name;
                         $_SESSION['role_name'] = $role_name;
 
@@ -99,99 +102,11 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập tài khoản của bạn | Herculis</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="css/login.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="img/"> <!-- Tạo icon -->
-    <style>
-        /* FORM */
-        form {
-            background-color: #EDDCD9;
-            border: 2px solid #264143;
-            border-radius: 20px;
-            /* Bo góc cho form */
-            padding: 20px;
-            box-shadow: 3px 4px 0px 1px #E99F4C;
-            /* Hiệu ứng đổ bóng */
-        }
 
-        .form-control,
-        .form-select {
-            box-shadow: 3px 4px 0px 1px #E99F4C;
-            border: 1px solid #ccc;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-        .form-control:focus {
-            outline: none;
-            transform: translateY(4px);
-            box-shadow: 1px 2px 0px 0px #E99F4C;
-        }
-
-
-        .divider:after,
-        .divider:before {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #eee;
-        }
-
-
-
-        /* NÚT */
-        #loginButton {
-            box-shadow: 3px 4px 0px 1px #D62980;
-            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-
-        /* NÚT GÓP Ý */
-        #feedbackButton {
-            box-shadow: 3px 4px 0px 1px #E99F4C;
-            border: 2px solid #264143;
-            border-radius: 4px;
-        }
-
-        #feedbackButton:hover {
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* NÚT QUAY LẠI TRANG CHỦ */
-        .back-link {
-            font-size: 0.9rem;
-            color: #007bff;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        /* NHẴN ĐĂNG NHẬP */
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #264143;
-        }
-
-        /* HÌNH ẢNH */
-        /* Đặt kích thước tối đa cho hình ảnh để không làm thay đổi bố cục */
-        #roleImage {
-            max-height: 500px;
-            max-width: 100%; /* Đảm bảo ảnh không vượt quá khung */
-            object-fit: cover; /* Duy trì tỷ lệ ảnh mà không làm méo */
-            margin: auto; /* Căn giữa */
-        }
-
-
-
-        .h-custom {
-            height: calc(100% - 73px);
-        }
-
-        @media (max-width: 450px) {
-            .h-custom {
-                height: 100%;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -199,8 +114,9 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
     <header class="p-3 bg-white">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <!-- LOGO -->
                 <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <p>Herculis</p>
+                    <img src="img/Herculis_logo.png" class="bi me-2" height="32" role="img" aria-label="Bootstrap">
                 </a>
 
 
@@ -251,7 +167,7 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                         <div class="form-group">
                             <label for="">Tài khoản:</label>
                             <div data-mdb-input-init class="form-outline mb-4">
-                                <input name="username" type="text" id="form3Example3" class="form-control form-control-lg border border-2 border-dark rounded-2"
+                                <input name="email" type="email" id="form3Example3" class="form-control form-control-lg border border-2 border-dark rounded-2"
                                     placeholder="Nhập email" />
                             </div>
                         </div>

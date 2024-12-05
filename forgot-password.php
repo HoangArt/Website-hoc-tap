@@ -74,7 +74,7 @@ session_start();
                                     </div>
                                 </div>
                             </div>
-                            <form method="post" action="send-forgot-password.php">
+                            <form method="post" action="reset-password/send-forgot-password.php">
                                 <div class="row gy-3 gy-md-4 overflow-hidden">
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email <span class="text-danger">*</span></label>

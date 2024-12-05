@@ -126,9 +126,8 @@ if (isset($_SESSION['message'])) {
                             </div>
                         </div>
                     </li>
-                    <li><a href="forum.php" class="nav-link px-2 link-dark">Diễn đàn</a></li>
-                    <li><a href="#about_us" class="nav-link px-2 link-dark">Về chúng tôi</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Liên lạc</a></li>
+                    <li><a href="about-us.php" class="nav-link px-2 link-dark">Về chúng tôi</a></li>
+                    <li><a href="contact-us.php" class="nav-link px-2 link-dark">Liên lạc</a></li>
                 </ul>
 
                 <!-- Ô TÌM KIẾM -->
@@ -138,7 +137,7 @@ if (isset($_SESSION['message'])) {
 
                 <!-- USER -->
                 <div class="text-end position-relative">
-                    <?php if (isset($_SESSION['username'])): ?>
+                    <?php if (isset($_SESSION['email'])): ?>
                         <img src="img/user.png" class="user-pic" id="userPic">
                         <div class="sub-menu-wrap" id="subMenu">
                             <div class="sub-menu">
@@ -551,9 +550,6 @@ if (isset($_SESSION['message'])) {
                             <a href="#!" class="text-white">Bắt đầu học</a>
                         </li>
                         <li class="mb-2">
-                            <a href="#!" class="text-white">Điễn đàn</a>
-                        </li>
-                        <li class="mb-2">
                             <a href="#!" class="text-white">Góp ý</a>
                         </li>
                     </ul>
@@ -572,6 +568,9 @@ if (isset($_SESSION['message'])) {
                         </li>
                         <li class="mb-2">
                             <a href="" class="text-white">FAQ</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="contact-us.php" class="text-white">Liên lạc</a>
                         </li>
                     </ul>
                 </div>
@@ -603,7 +602,8 @@ if (isset($_SESSION['message'])) {
 
 
     <script src="js/hello.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

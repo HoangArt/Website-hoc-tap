@@ -6,7 +6,7 @@ $token = $_POST["token"];
 $token_hash = hash("sha256", $token);
 
 // Kết nối database
-$conn = require __DIR__ . "/db.php";
+$conn = require __DIR__ . "/../db.php";
 
 // Lấy thông tin người dùng dựa trên token
 $sql = "SELECT * FROM users WHERE reset_token_hash = ?";
@@ -65,9 +65,8 @@ if ($new_password != $confirm_password) {
 
     // Kiểm tra nếu mật khẩu được cập nhật thành công
     if ($stmt_update->affected_rows > 0) {
-        // Không cần phải chuyển hướng lại đến reset-password.php
-        $_SESSION['message'] = "Mật khẩu của bạn đã được cập nhật thành công.";
-        header("Location: login.php");  // Điều hướng về trang đăng nhập sau khi đổi mật khẩu thành công
+        $_SESSION['password_changed'] = true;
+        header("Location: ../login.php");
         exit();
     } else {
         $_SESSION['message'] = "Có lỗi xảy ra, vui lòng thử lại.";

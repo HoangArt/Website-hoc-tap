@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("db.php");
+include("../db.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'] ?? '';
@@ -19,14 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $full_name = $user['full_name'];
         } else {
             $_SESSION['message'] = "Lỗi! Không tìm thấy địa chỉ email trong hệ thống.";
-            header("Location: forgot-password.php");
+            header("Location: ../forgot-password.php");
             exit;
         }
 
         $stmt->close();
     } else {
         $_SESSION['message'] = "Lỗi SQL.";
-        header("Location: forgot-password.php");
+        header("Location: ../forgot-password.php");
         exit;
     }
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("sss", $token_hash, $expiry, $email);
         $stmt->execute();
         if ($conn->affected_rows) {
-            $mail = require __DIR__ . "/sendmails.php";
+            $mail = require __DIR__ . "/../sendmails.php";
 
             $mail->setFrom('noreply@Herculis.com');
             $mail->addAddress($email);
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->Body = "Xin chào $full_name,<br><br>";
             $mail->Body .= "Chúng tôi nhận được yêu cầu thay đổi mật khẩu cho tài khoản của bạn tại trang web của chúng tôi.<br><br>";
             $mail->Body .= "Để thay đổi mật khẩu của bạn, vui lòng nhấn vào liên kết dưới đây trong vòng 30 phút kể từ khi nhận được email này:<br><br>";
-            $mail->Body .= "<a href='http://localhost/Website-hoc-tap/reset-password.php?token=$token'>Thay đổi mật khẩu</a><br><br>";
+            $mail->Body .= "<a href='http://localhost/Website-hoc-tap/reset-password/reset-password.php?token=$token'>Thay đổi mật khẩu</a><br><br>";
             $mail->Body .= "Nếu bạn gặp khó khăn, vui lòng liên hệ với chúng tôi để được hỗ trợ.<br><br>";
             $mail->Body .= "Nếu bạn không yêu cầu thay đổi mật khẩu, vui lòng bỏ qua email này.<br><br>";
             $mail->Body .= "Trân trọng,<br>";
@@ -66,6 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Redirect to forgot-password.php with message
-    header("Location: forgot-password.php");
+    header("Location: ../forgot-password.php");
     exit;
 }

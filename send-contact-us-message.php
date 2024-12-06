@@ -4,18 +4,20 @@ require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 $mail = new PHPMailer(true);
 
 $mail->isSMTP();
 $mail->SMTPAuth = true;
 
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = $_ENV['SMTP_HOST'];
 $mail->SMTPAuth = true;
-$mail->Username = 'hoang0005367@huce.edu.vn';
-$mail->Password = 'dckg jwcn jbrd rknx';
+$mail->Username = $_ENV['SMTP_USERNAME'];
+$mail->Password = $_ENV['SMTP_PASSWORD'];
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-$mail->Port = 587;
+$mail->Port = $_ENV['SMTP_PORT'];
 $mail->isHTML(true);
 $mail->CharSet = 'UTF-8';
 
@@ -28,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         $mail->setFrom($email, $full_name);
-        $mail->addAddress('hoang0005367@huce.edu.vn');
+        $mail->addAddress($_ENV['SMTP_USERNAME']);
 
         $mail->Subject = $subject;
         $mail->Body    =    "<h2>Thông tin người liên lạc:</h2>

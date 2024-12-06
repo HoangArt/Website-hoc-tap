@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+
 $mail = new PHPMailer(true);
 
 $mail->isSMTP();
@@ -17,7 +18,7 @@ try {
     $mail->Host = $_ENV['SMTP_HOST'];
     $mail->SMTPAuth = true;
     $mail->Username = $_ENV['SMTP_USERNAME'];
-    $mail->Password = $_ENV['SMTP_PASSWoRD'];
+    $mail->Password = $_ENV['SMTP_PASSWORD'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = $_ENV['SMTP_PORT'];
     $mail->isHTML(true);

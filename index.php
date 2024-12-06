@@ -131,9 +131,15 @@ if (isset($_SESSION['message'])) {
                 </ul>
 
                 <!-- Ô TÌM KIẾM -->
-                <form class="col-4 mb-3 mb-lg-0 me-lg-5" id="searchbox">
-                    <input type="search" class="form-control border border-3" placeholder="Tìm kiếm khóa học..." aria-label="Search">
+                <form class="col-12 col-lg-6 mb-3 mb-lg-0 me-lg-3" id="searchbox"
+                    method="get" action="search.php">
+                    <input type="search" class="form-control border border-3"
+                        placeholder="Tìm kiếm khóa học..." name="search"
+                        value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                 </form>
+
+
+
 
                 <!-- USER -->
                 <div class="text-end position-relative">

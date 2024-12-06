@@ -46,7 +46,7 @@ session_start();
                 </ul>
 
                 <div class="text-end">
-                    <a href="feedback.php" class="btn btn-default">Góp ý</a>
+                    <a href="contact-us.php" class="btn btn-default">Liên hệ</a>
                 </div>
             </div>
         </div>

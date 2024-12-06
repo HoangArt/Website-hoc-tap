@@ -1,11 +1,9 @@
 <?php
+require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-require 'PHPMailer/src/Exception.php';
 
 $mail = new PHPMailer(true);
 
@@ -28,18 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subject = $_POST['subject'];
     $message = $_POST['message'];
 
-
     try {
         $mail->setFrom($email, $full_name);
         $mail->addAddress('hoang0005367@huce.edu.vn');
 
         $mail->Subject = $subject;
-        $mail->Body    =    "<h2>Nội dung:</h2>
-                            <p>$subject</P>
-                            <h2>Thông tin người liên lạc:</h2>
+        $mail->Body    =    "<h2>Thông tin người liên lạc:</h2>
                             <p><strong>Tên:</strong> $full_name</p>
                             <p><strong>Email:</strong> $email</p>
-                            <p><strong>Số điện thoại:</strong> $phone</p>";
+                            <p><strong>Số điện thoại:</strong> $phone</p>
+                            
+                            <h2>Nội dung:</h2>
+                            <p>$message</P>";
         $mail->send();
         header("Location: mail-sent-successfully/contact-us-message.html");
         exit();

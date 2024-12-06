@@ -153,7 +153,6 @@ if (isset($_SESSION['message'])) {
                         <a href="login.php" class="btn btn-outline-primary me-2">Đăng nhập</a>
                         <a href="register.php" class="btn btn-primary">Đăng ký</a>
                     <?php endif; ?>
-                    <a href="feedback.php" class="btn btn-default">Góp ý</a>
                 </div>
             </div>
         </div>

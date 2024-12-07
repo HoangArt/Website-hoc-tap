@@ -1,1 +1,42 @@
 # Website-ho-tro-hoc-tap-phat-trien-ky-nang-tre-em
+## Việc cần làm:
+
+### Tổng thể trang web:
+1. Tạo các trang
+- Về chúng tôi (about-us.php)
+- Trung tâm hỗ trợ
+- Chính sách quyền riêng tư
+- FAQ
+- User profile
+- Trang học tập
+- Trang của học sinh (Theo dõi tiến độ học tập)
+- Trang của giáo viên (Theo dõi tiến độ học tập của học sinh, thêm bài tập)
+- Trang của phụ huynh (Theo dõi tiến độ học tập của con mình)
+
+2. Cải thiện/ Sửa
+- Logo
+- Sửa nút tìm kiếm (lỗi không chuyển đến trang search.php)
+- Sửa nút khám phá (lỗi nhấn không hiện danh sách môn học)
+- Cải thiện drop down menu cho người dùng
+
+### index.php
+- Cải thiện giao diện của trang
+
+### contact-us.php
+- Cải thiện giao diện
+
+### login.php
+- Sửa lại giao diện
+- Tạo chức năng cho nút ghi nhớ tài khoản
+
+### register.php
+- Sửa lại giao diện
+
+### forgot-password.php
+- Cải thiện giao diện
+
+### search.php
+- Cải thiện giao diện
+
+### csdl
+- Nhiều chức năng chưa nghĩ ra

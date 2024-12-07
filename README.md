@@ -1,4 +1,7 @@
-# Website-ho-tro-hoc-tap-phat-trien-ky-nang-tre-em
+# Website-hoc-tap
+
+## Màu trang: #25b1e8
+
 ## Việc cần làm:
 
 ### Tổng thể trang web:

@@ -15,6 +15,7 @@
 - Trang của học sinh (Theo dõi tiến độ học tập)
 - Trang của giáo viên (Theo dõi tiến độ học tập của học sinh, thêm bài tập)
 - Trang của phụ huynh (Theo dõi tiến độ học tập của con mình)
+- Thông báo người dùng cần xác nhận tài khoản nếu chưa làm
 
 2. Cải thiện/ Sửa
 - Logo
@@ -29,14 +30,7 @@
 - Cải thiện giao diện
 
 ### login.php
-- Sửa lại giao diện
 - Tạo chức năng cho nút ghi nhớ tài khoản
-
-### register.php
-- Sửa lại giao diện
-
-### forgot-password.php
-- Cải thiện giao diện
 
 ### search.php
 - Cải thiện giao diện

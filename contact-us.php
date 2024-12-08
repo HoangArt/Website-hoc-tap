@@ -171,7 +171,6 @@ session_start();
                         <a href="login.php" class="btn btn-outline-primary me-2">Đăng nhập</a>
                         <a href="register.php" class="btn btn-primary">Đăng ký</a>
                     <?php endif; ?>
-                    <a href="feedback.php" class="btn btn-default">Góp ý</a>
                 </div>
             </div>
         </div>
@@ -191,7 +190,7 @@ session_start();
                                             <div class="contact-info-wrapper py-4 py-xl-5">
                                                 <h2 class="h1 mb-3">Liên lạc</h2>
                                                 <p class="lead fs-4 mb-4 mb-xxl-5">
-                                                    Chúng tôi cam kết luôn sẵn sàng hỗ trợ bạn mọi lúc, mọi nơi, 24/7, để đảm bảo giải quyết nhanh chóng và hiệu quả mọi vấn đề mà bạn gặp phải.
+                                                    Chúng tôi cam kết luôn sẵn sàng hỗ trợ bạn mọi lúc, mọi nơi, đảm bảo giải quyết nhanh chóng và hiệu quả mọi vấn đề mà bạn gặp phải.
                                                     Chúng tôi luôn đặt sự hài lòng của bạn lên hàng đầu và sẽ nỗ lực hết mình để mang lại trải nghiệm tốt nhất.
                                                 </p>
 

@@ -56,6 +56,7 @@
         .success-inner p {
             font-size: 18px;
             padding: 20px 15px;
+            text-align: center;
         }
 
         .success-inner .btn {
@@ -84,6 +85,12 @@
             width: 100%;
             box-sizing: border-box;
         }
+
+        @media (max-width: 768px) {
+            .success-inner p {
+                white-space: normal;
+            }
+        }
     </style>
 </head>
 
@@ -91,14 +98,16 @@
     <section class="mail-seccess section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 offset-lg-3 col-12">
+                <div class="col-lg-12 col-12 text-center">
                     <div class="success-inner">
-                        <h1><i class="fas fa-envelope"></i><span>Thư của bạn đã được gửi thành công!</span></h1>
+                        <h1><i class="fas fa-envelope"></i><span>Bạn đã tạo tài khoản thành công!</span>
+                        </h1>
                         <p>
-                            Vui lòng chờ trong vòng 5 đến 7 ngày làm việc để nhận được phản hồi.<br><br>
-                            Trong thời gian này, chúng tôi rất trân trọng sự kiên nhẫn của bạn và sẽ cố gắng xử lý yêu
-                            cầu của bạn một cách nhanh chóng và chính xác nhất.<br><br>
-                            Cảm ơn quý khách đã hợp tác!
+                            Trước khi bạn háo hức và khám phá những khả năng phi thường của Herculis,<br>
+                            bạn cần xác nhận tài khoản để chúng tôi có thể biết được bạn thực sự muốn sử dụng Herculis.<br><br>
+
+                            Chúng tôi đã gửi một email đến hộp thư của bạn. Vui lòng kiểm tra email để tiếp tục.<br>
+                            Nếu không tìm thấy email, hãy kiểm tra thư mục **Spam** hoặc đợi một vài phút trước khi thử lại.
                         </p>
                         <a href="../index.php" class="btn btn-lg">Về Trang chủ</a>
                     </div>

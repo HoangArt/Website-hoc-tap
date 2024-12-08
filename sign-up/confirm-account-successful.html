@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../fontawesome-free-6.6.0-web/css/all.css">
     <link rel="icon" type="image/x-icon" href="img/"> <!-- Tạo icon -->
     <style>
@@ -56,6 +57,7 @@
         .success-inner p {
             font-size: 18px;
             padding: 20px 15px;
+            text-align: center;
         }
 
         .success-inner .btn {
@@ -84,6 +86,12 @@
             width: 100%;
             box-sizing: border-box;
         }
+
+        @media (max-width: 768px) {
+            .success-inner p {
+                white-space: normal;
+            }
+        }
     </style>
 </head>
 
@@ -91,16 +99,14 @@
     <section class="mail-seccess section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 offset-lg-3 col-12">
+                <div class="col-lg-12 col-12 text-center">
                     <div class="success-inner">
-                        <h1><i class="fas fa-envelope"></i><span>Thư của bạn đã được gửi thành công!</span></h1>
+                        <h1><i class="bi bi-check-circle"></i><span>Xác nhận tài khoản thành công!</span>
+                        </h1>
                         <p>
-                            Vui lòng chờ trong vòng 5 đến 7 ngày làm việc để nhận được phản hồi.<br><br>
-                            Trong thời gian này, chúng tôi rất trân trọng sự kiên nhẫn của bạn và sẽ cố gắng xử lý yêu
-                            cầu của bạn một cách nhanh chóng và chính xác nhất.<br><br>
-                            Cảm ơn quý khách đã hợp tác!
+                            Bây giờ bạn đã có thể đăng nhập và khám phá những khả năng vô hạn cùng Herculis.
                         </p>
-                        <a href="../index.php" class="btn btn-lg">Về Trang chủ</a>
+                        <a href="../login.php" class="btn btn-lg">Đăng nhập tài khoản</a>
                     </div>
                 </div>
             </div>

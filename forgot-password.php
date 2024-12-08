@@ -33,30 +33,11 @@ session_start();
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header class="p-3 bg-white">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <!-- LOGO -->
-                <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <img src="img/Herculis_logo.png" class="bi me-2" height="32" role="img" aria-label="Bootstrap">
-                </a>
-
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                </ul>
-
-                <div class="text-end">
-                    <a href="contact-us.php" class="btn btn-default">Liên hệ</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- CÀI LẠI MẬT KHẨU -->
-    <section>
+    <section class="d-flex align-items-center min-vh-100">
         <div class="container">
             <div class="card border-light-subtle shadow-sm">
                 <div class="row g-0">
+                    <!-- Hình ảnh -->
                     <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
                         <img class="img-fluid" loading="lazy" src="img/quenMatKhau.jpg" height="500px" alt="Welcome back you've been missed!">
                     </div>
@@ -67,6 +48,16 @@ session_start();
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-5">
+                                        <!-- THÔNG BÁO LỖI -->
+                                        <?php if (isset($_SESSION['message'])): ?>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <?php echo $_SESSION['message']; ?>
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            <?php unset($_SESSION['message']); ?>
+                                        <?php endif; ?>
+
+
                                         <h2 class="h3">Thay đổi mật khẩu</h2>
                                         <h3 class="fs-6 fw-normal text-secondary m-0">
                                             Vui lòng điền email được liên kết với tài khoản để thay đổi mật khẩu.
@@ -78,30 +69,22 @@ session_start();
                                 <div class="row gy-3 gy-md-4 overflow-hidden">
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="email" id="email" placeholder="hello@example.com" required>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="hello@example.com" required>
                                     </div>
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button type="submit" class="btn bsb-btn-xl btn-primary" type="submit">Tiếp tục</button>
+                                            <button type="submit" class="btn bsb-btn-xl text-white" style="background-color: #25b1e8;" type="submit">Tiếp tục</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
 
-                            <!-- Hiển thị thông báo popup nếu có -->
-                            <?php if (isset($_SESSION['message'])): ?>
-                                <script type="text/javascript">
-                                    alert("<?php echo $_SESSION['message']; ?>");
-                                </script>
-                                <?php unset($_SESSION['message']); ?>
-                            <?php endif; ?>
-
                             <div class="row">
                                 <div class="col-12">
                                     <hr class="mt-5 mb-4 border-secondary-subtle">
                                     <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
-                                        <a href="login.php" class="link-secondary text-decoration-none">Đăng nhập</a>
-                                        <a href="register.php" class="link-secondary text-decoration-none">Đăng ký</a>
+                                        <a href="login.php" class="text-decoration-none" style="color: #25b1e8;">Đăng nhập</a>
+                                        <a href="role-select.html" class="text-decoration-none" style="color: #25b1e8;">Đăng ký</a>
                                     </div>
                                 </div>
                             </div>
@@ -112,6 +95,9 @@ session_start();
             </div>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

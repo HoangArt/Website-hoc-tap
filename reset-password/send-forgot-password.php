@@ -49,10 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->Body .= "Nếu bạn gặp khó khăn, vui lòng liên hệ với chúng tôi để được hỗ trợ.<br><br>";
             $mail->Body .= "Nếu bạn không yêu cầu thay đổi mật khẩu, vui lòng bỏ qua email này.<br><br>";
             $mail->Body .= "Trân trọng,<br>";
-            $mail->Body .= "Đội ngũ hỗ trợ khách hàng của Herculis.";
+            $mail->Body .= "Đội ngũ hỗ trợ của Herculis.";
 
             if ($mail->send()) {
-                $_SESSION['message'] = "Đường dẫn thay đổi mật khẩu đã dược gửi đến email của bạn.";
+                header("Location: ../mail-sent-successfully/reset-password-message.html");
+                exit;
             } else {
                 $_SESSION['message'] = "Lỗi! Không gửi được đến địa chỉ email của bạn. Vui lòng thử lại sau ít phút.";
             }

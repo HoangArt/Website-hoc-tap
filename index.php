@@ -142,24 +142,36 @@ if (isset($_SESSION['message'])) {
 
 
                 <!-- USER -->
-                <div class="text-end position-relative">
+                <div class="position-relative">
                     <?php if (isset($_SESSION['email'])): ?>
-                        <img src="img/user.png" class="user-pic" id="userPic">
-                        <div class="sub-menu-wrap" id="subMenu">
+                        <!-- User Avatar -->
+                        <img src="img/user.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
+
+                        <!-- Menu Dropdown -->
+                        <div class="sub-menu-wrap" id="subMenu" aria-hidden="true">
                             <div class="sub-menu">
+                                <!-- Thông tin người dùng -->
                                 <div class="user-info">
-                                    <img src="img/user.png" alt="User">
+                                    <img src="img/user.png" alt="User Avatar">
                                     <h4><?= htmlspecialchars($_SESSION['full_name']); ?></h4>
                                 </div>
-                                <a href="user_settings.php">Cài đặt tài khoản</a>
-                                <a href="logout.php">Đăng xuất</a>
+
+                                <ul>
+                                    <li><a href="#"><i class="fa-solid fa-user"></i> Hồ sơ</a></li>
+                                    <li><a href="user_settings.php"><i class="fa-solid fa-cog"></i> Cài đặt tài khoản</a></li>
+                                    <li><a href="#"><i class="fa-solid fa-life-ring"></i> Trung tâm hỗ trợ</a></li>
+                                    <li><a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</a></li>
+                                </ul>
                             </div>
                         </div>
+
                     <?php else: ?>
-                        <a href="login.php" class="btn btn-outline-primary me-2">Đăng nhập</a>
-                        <a href="register.php" class="btn btn-primary">Đăng ký</a>
+                        <!-- Login and Register Buttons -->
+                        <a href="login.php" class="btn btn-outline-primary me-2" aria-label="Login">Đăng nhập</a>
+                        <a href="role-select.html" class="btn btn-primary" aria-label="Register">Đăng ký</a>
                     <?php endif; ?>
                 </div>
+
             </div>
         </div>
     </header>
@@ -268,7 +280,7 @@ if (isset($_SESSION['message'])) {
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Cộng tác với các giáo viên khác</p>
                         </div>
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="register.php">Bắt đầu quản lý lớp học tại đây</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="sign-up/teacher.php">Bắt đầu quản lý lớp học tại đây</a>
                 </div>
 
                 <!-- Ảnh bên phải -->
@@ -301,7 +313,7 @@ if (isset($_SESSION['message'])) {
                     </p>
 
 
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="register.php">Bắt đầu quản lý lớp học tại đây</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="sign-up/student.php">Bắt đầu quản lý lớp học tại đây</a>
                 </div>
             </div>
         </div>

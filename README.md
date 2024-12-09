@@ -6,6 +6,7 @@
 
 ### Tổng thể trang web:
 1. Tạo các trang
+- 404 (Khi mà người dùng tìm trang không có trong hệ thống HOẶC không có quyền truy cập)
 - Về chúng tôi (about-us.php)
 - Trung tâm hỗ trợ
 - Chính sách quyền riêng tư

@@ -1,4 +1,15 @@
 /* HEADER */
+
+
+header {
+  padding: 20px;
+  background-color: #FFF9EC;
+  border-bottom: 2px solid #333;
+}
+
+/* END HEADER */
+
+
 /* ẢNH USER */
 .user-pic {
   width: 40px;
@@ -83,38 +94,14 @@
 /* Responsive */
 @media (max-width: 600px) {
   .sub-menu-wrap {
-      right: 10px;
-      left: 10px;
-      width: auto;
+    right: 10px;
+    left: 10px;
+    width: auto;
   }
 }
 
 
 /* END ẢNH USER*/
-
-/* HỘP TÌM KIẾM */
-.search-container {
-  position: relative;
-}
-
-.search-input {
-  height: 50px;
-  border-radius: 30px;
-  padding-left: 35px;
-  border: none;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.search-icon {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  color: #888;
-}
-
-/* END HỘP TÌM KIẾM*/
-
 
 .custom-dropdown a .arrow {
   display: inline-block;
@@ -236,11 +223,9 @@
   padding: 0;
 }
 
-/* THÂN TRANG*/
-
 
 
 /* FOOTER */
 #footer {
-  background-color: #25b1e8;
+  background-color: #feca7a;
 }

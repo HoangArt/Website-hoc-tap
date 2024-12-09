@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liên lạc | Herculis</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/header.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -47,86 +47,70 @@ session_start();
         textarea[readonly] {
             cursor: not-allowed;
         }
+
+        .header-btn {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Hiệu ứng hover */
+        .header-btn:hover {
+            background-color: #feca73;
+            /* Nền màu vàng khi hover */
+            color: #fff;
+            /* Chữ trắng khi hover */
+        }
     </style>
 </head>
 
 <body style="background-color: #FFF9EC">
     <!-- HEADER -->
     <header>
-        <div class="container" style="background-color: #FFF9EC;">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <!-- LOGO -->
-                <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <img src="img/logo/Ongnho-logo.png" class="bi me-2" height="100px" role="img" aria-label="Bootstrap">
-                </a>
+    <div class="container" style="background-color: #FFF9EC;">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- LOGO -->
+            <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                <img src="img/logo/Ongnho-logo.png" class="bi me-2" height="100px" role="img" aria-label="Bootstrap">
+            </a>
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <!-- KHÁM PHÁ -->
-                    <li class="nav-item">
-                        <a href="search.php" class="nav-link text-dark d-flex flex-column align-items-center">
-                            <i class="fa-solid fa-magnifying-glass fa-3x mb-2"></i>
-                            <span>Khám phá</span>
-                        </a>
-                    </li>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <!-- KHÁM PHÁ -->
+                <li class="nav-item">
+                    <a href="search.php" class="nav-link header-btn">
+                        <i class="fa-solid fa-magnifying-glass fa-3x mb-2"></i>
+                        <span>Khám phá</span>
+                    </a>
+                </li>
 
-                    <!-- VỀ CHÚNG MÌNH -->
-                    <li class="nav-item">
-                        <a href="about-us.php" class="nav-link text-dark d-flex flex-column align-items-center">
-                            <i class="fa-solid fa-users fa-3x mb-2"></i>
-                            <span>Về chúng mình</span>
-                        </a>
-                    </li>
+                <!-- VỀ CHÚNG MÌNH -->
+                <li class="nav-item">
+                    <a href="about-us.php" class="nav-link header-btn">
+                        <i class="fa-solid fa-users fa-3x mb-2"></i>
+                        <span>Về chúng mình</span>
+                    </a>
+                </li>
 
-                    <!-- LIÊN LẠC -->
-                    <li class="nav-item">
-                        <a href="contact-us.php" class="nav-link text-dark d-flex flex-column align-items-center">
-                            <i class="fa-regular fa-address-book fa-3x mb-2"></i>
-                            <span>Liên lạc</span>
-                        </a>
-                    </li>
-                </ul>
+                <!-- LIÊN LẠC -->
+                <li class="nav-item">
+                    <a href="contact-us.php" class="nav-link header-btn">
+                        <i class="fa-regular fa-address-book fa-3x mb-2"></i>
+                        <span>Liên lạc</span>
+                    </a>
+                </li>
+            </ul>
 
-
-                <!-- USER -->
-                <div class="position-relative">
-                    <?php if (isset($_SESSION['email'])): ?>
-                        <!-- User Avatar -->
-                        <img src="img/user.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
-
-                        <!-- Menu Dropdown -->
-                        <div class="sub-menu-wrap" id="subMenu" aria-hidden="true">
-                            <div class="sub-menu">
-                                <!-- Thông tin người dùng -->
-                                <div class="user-info">
-                                    <img src="img/user.png" alt="User Avatar">
-                                    <h4><?= htmlspecialchars($_SESSION['full_name']); ?></h4>
-                                </div>
-
-                                <ul>
-                                    <li><a href="#"><i class="fa-solid fa-user"></i> Hồ sơ</a></li>
-                                    <li><a href="user_settings.php"><i class="fa-solid fa-cog"></i> Cài đặt tài khoản</a></li>
-                                    <li><a href="#"><i class="fa-solid fa-life-ring"></i> Trung tâm hỗ trợ</a></li>
-                                    <li><a href="logout.php"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    <?php else: ?>
-                        <a href="login.php"
-                            class="btn me-2"
-                            aria-label="Login"
-                            style="padding: 20px 20px; border: 2px solid #feca73; background-color: transparent; color: #feca73; text-decoration: none; transition: background-color 0.3s, color 0.3s;"
-                            onmouseover="this.style.backgroundColor='#feca73'; this.style.color='black';"
-                            onmouseout="this.style.backgroundColor='transparent'; this.style.color='#feca73';">
-                            Đăng nhập
-                        </a>
-                        <a href="role-select.php" class="btn" aria-label="Sign-up" style="padding: 20px 20px; background-color: #feca73;">Đăng ký</a>
-                    <?php endif; ?>
-                </div>
-
+            <!-- USER -->
+            <div class="position-relative">
+                <a href="login.php" class="btn header-login-btn">Đăng nhập</a>
+                <a href="role-select.php" class="btn header-signup-btn">Đăng ký</a>
             </div>
         </div>
-    </header>
+    </div>
+</header>
+
 
     <!-- FORM LIÊN LẠC -->
     <section class="py-3 py-md-5 py-xl-8" style="margin-top: 80px;">

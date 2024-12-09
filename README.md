@@ -21,6 +21,8 @@
 
 2. Cải thiện/ Sửa
 - Cải thiện drop down menu cho người dùng
+- Sửa lại giao diện trang đăng nhập/ đăng ký sau khi đổi thành Ong Nhỏ
+- Thống nhất css
 
 ### index.php
 - Cải thiện giao diện của trang

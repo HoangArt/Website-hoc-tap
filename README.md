@@ -1,6 +1,8 @@
 # Website-hoc-tap
 
-## Màu trang: #25b1e8
+## Màu trang: 
+#FFF9EC (Nhạt)
+#feca7a (Đậm)
 
 ## Việc cần làm:
 

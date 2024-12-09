@@ -1,6 +1,8 @@
 # Website-hoc-tap
 
-## Màu trang: #25b1e8
+## Màu trang: 
+#FFF9EC (Nhạt)
+#feca7a (Đậm)
 
 ## Việc cần làm:
 
@@ -9,7 +11,6 @@
 - 404 (Khi mà người dùng tìm trang không có trong hệ thống HOẶC không có quyền truy cập)
 - Về chúng tôi (about-us.php)
 - Trung tâm hỗ trợ
-- Chính sách quyền riêng tư
 - FAQ
 - User profile
 - Trang học tập
@@ -19,13 +20,13 @@
 - Thông báo người dùng cần xác nhận tài khoản nếu chưa làm
 
 2. Cải thiện/ Sửa
-- Logo
-- Sửa nút tìm kiếm (lỗi không chuyển đến trang search.php)
-- Sửa nút khám phá (lỗi nhấn không hiện danh sách môn học)
 - Cải thiện drop down menu cho người dùng
+- Sửa lại giao diện trang đăng nhập/ đăng ký sau khi đổi thành Ong Nhỏ
+- Thống nhất css
 
 ### index.php
 - Cải thiện giao diện của trang
+- Thêm danh sách môn học ở dưới
 
 ### contact-us.php
 - Cải thiện giao diện

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("db.php");  // Đảm bảo kết nối cơ sở dữ liệu đã được thực hiện trong db.php
+include("db.php");
 
 // Kiểm tra nếu người dùng đã đăng nhập chưa
 if (isset($_SESSION['email'])) {
@@ -204,7 +204,7 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                             <div class="col-12">
                                                 <div
                                                     class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
-                                                    <a href="role-select.html" class="text-decoration-none" style="color: #25b1e8">Tạo tài khoản mới</a>
+                                                    <a href="role-select.php" class="text-decoration-none" style="color: #25b1e8">Tạo tài khoản mới</a>
                                                     <a href="forgot-password.php" class="text-decoration-none" style="color: #25b1e8">Quên mật khẩu?</a>
                                                 </div>
                                             </div>

@@ -3,6 +3,13 @@ session_start();
 include("../db.php");
 require "../sendmails.php";
 
+// Kiểm tra nếu người dùng đã đăng nhập chưa
+if (isset($_SESSION['email'])) {
+    $_SESSION['message'] = "Bạn đã đăng nhập rồi!";
+    header("Location: ../index.php");
+    exit();
+}
+
 // Hàm kiểm tra email đã tồn tại trong Cơ sở dữ liệu
 function checkEmailExists($email)
 {
@@ -30,7 +37,7 @@ function redirectBasedOnRole($role)
         header("Location: parent.php");
     } else {
         $_SESSION['message'] = "Vai trò không hợp lệ.";
-        header("Location: ../role-select.html");
+        header("Location: ../role-select.php");
     }
     exit();
 }

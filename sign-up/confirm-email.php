@@ -1,7 +1,13 @@
 <?php
+session_start();
 include("../db.php");
 
-if (isset($_GET['token'])) {
+// Kiểm tra nếu người dùng đã đăng nhập chưa
+if (isset($_SESSION['email'])) {
+    $_SESSION['message'] = "Bạn đã đăng nhập rồi!";
+    header("Location: ../index.php");
+    exit();
+} elseif (isset($_GET['token'])) {
     $confirm_email_token = $_GET['token'];
 
     // Kiểm tra token hợp lệ
@@ -20,7 +26,7 @@ if (isset($_GET['token'])) {
             $stmt->execute();
 
             // Giao diện xác nhận thành công
-            header("Location: ../sign-up/confirm-account-successful.html");
+            header("Location: ../sign-up/confirm-account-successful.php");
             exit();
         } else {
             echo "<p class='text-center text-warning'>Email này đã được xác nhận trước đó. Vui lòng <a href='../login.php'>đăng nhập</a>.</p>";

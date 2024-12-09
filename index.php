@@ -168,7 +168,7 @@ if (isset($_SESSION['message'])) {
                     <?php else: ?>
                         <!-- Login and Register Buttons -->
                         <a href="login.php" class="btn btn-outline-primary me-2" aria-label="Login">Đăng nhập</a>
-                        <a href="role-select.html" class="btn btn-primary" aria-label="Register">Đăng ký</a>
+                        <a href="role-select.php" class="btn btn-primary" aria-label="Register">Đăng ký</a>
                     <?php endif; ?>
                 </div>
 

@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Kiểm tra nếu người dùng đã đăng nhập chưa
+if (isset($_SESSION['email'])) {
+    $_SESSION['message'] = "Bạn đã đăng nhập rồi!";
+    header("Location: ../index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 

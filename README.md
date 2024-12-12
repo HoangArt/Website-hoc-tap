@@ -11,8 +11,6 @@
 1. Tạo các trang
 - 404 (Khi mà người dùng tìm trang không có trong hệ thống HOẶC không có quyền truy cập)
 - Về chúng tôi (about-us.php)
-- Trung tâm hỗ trợ
-- FAQ
 - User profile
 - Trang học tập
 - Trang của học sinh (Theo dõi tiến độ học tập)
@@ -22,7 +20,6 @@
 
 2. Cải thiện/ Sửa
 - Cải thiện drop down menu cho người dùng
-- Sửa lại giao diện trang đăng nhập/ đăng ký sau khi đổi thành Ong Nhỏ
 - Thống nhất css
 
 ### index.php

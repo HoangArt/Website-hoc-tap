@@ -32,14 +32,14 @@ session_start();
     </style>
 </head>
 
-<body>
+<body style="background-color: #f0f0f0;">
     <section class="d-flex align-items-center min-vh-100">
         <div class="container">
             <div class="card border-light-subtle shadow-sm">
                 <div class="row g-0">
                     <!-- Hình ảnh -->
                     <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-                        <img class="img-fluid" loading="lazy" src="img/quenMatKhau.jpg" height="500px" alt="Welcome back you've been missed!">
+                        <img class="img-fluid" loading="lazy" src="img/login/quenMatKhau.png" height="500px" alt="Welcome back you've been missed!">
                     </div>
 
                     <!-- FORM CÀI LẠI MẬT KHẨU -->
@@ -60,7 +60,7 @@ session_start();
 
                                         <h2 class="h3">Thay đổi mật khẩu</h2>
                                         <h3 class="fs-6 fw-normal text-secondary m-0">
-                                            Vui lòng điền email được liên kết với tài khoản để thay đổi mật khẩu.
+                                            Vui lòng nhập email được liên kết với tài khoản để thay đổi mật khẩu.
                                         </h3>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@ session_start();
                                     </div>
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button type="submit" class="btn bsb-btn-xl text-white" style="background-color: #25b1e8;" type="submit">Tiếp tục</button>
+                                            <button type="submit" class="btn bsb-btn-xl text-white" style="background-color: #feca7a;" type="submit">Tiếp tục</button>
                                         </div>
                                     </div>
                                 </div>
@@ -83,8 +83,8 @@ session_start();
                                 <div class="col-12">
                                     <hr class="mt-5 mb-4 border-secondary-subtle">
                                     <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
-                                        <a href="login.php" class="text-decoration-none" style="color: #25b1e8;">Đăng nhập</a>
-                                        <a href="role-select.html" class="text-decoration-none" style="color: #25b1e8;">Đăng ký</a>
+                                        <a href="login.php" class="text-decoration-none" style="color: #ffb700;">Đăng nhập</a>
+                                        <a href="role-select.php" class="text-decoration-none" style="color: #ffb700;">Đăng ký</a>
                                     </div>
                                 </div>
                             </div>

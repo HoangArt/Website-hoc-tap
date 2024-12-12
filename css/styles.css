@@ -5,7 +5,40 @@ header {
   padding: 20px;
   background-color: #FFF9EC;
   border-bottom: 2px solid #333;
+  position: fixed; 
+  width: 100%; 
+  z-index: 1000; 
+  top: 0; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+header .nav {
+  gap: 10px;
+}
+
+header .nav-link i {
+  transition: color 0.3s ease;
+}
+
+header .nav-link span {
+  transition: color 0.3s ease;
+}
+
+header .nav-link:hover i {
+  color: #feca73;
+}
+
+header .nav-link:hover span {
+  color: #feca73;
+}
+
+/* Định dạng chữ trong menu */
+header .nav-link span {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
 
 /* END HEADER */
 
@@ -228,4 +261,8 @@ header {
 /* FOOTER */
 #footer {
   background-color: #feca7a;
+}
+
+.footer-links {
+  text-decoration: none;
 }

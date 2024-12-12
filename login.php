@@ -101,15 +101,12 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập tài khoản của bạn | Herculis</title>
+    <title>Đăng nhập tài khoản | Ong Nhỏ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="img/"> <!-- Tạo icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png"> <!-- Tạo icon -->
     <style>
-        body {
-            background-color: #f0f0f0;
-        }
-
         .form-floating .form-select {
             height: calc(2.5em + 0.75rem);
             padding: 0.375rem 0.75rem;
@@ -117,19 +114,30 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
             align-items: center;
             line-height: 1.5;
         }
+
+        .form-label {
+            color: black;
+            background-color: transparent;
+            padding: 0 0.25rem;
+        }
+
+        .form-check-input:checked {
+            background-color: #feca7a;
+            border-color: #feca7a;
+        }
     </style>
 </head>
 
-<body>
-    <section class="p-3 p-md-4 p-xl-5 ">
+<body style="background-color: #f0f0f0;">
+    <section class="d-flex align-items-center min-vh-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-xxl-11 ">
-                    <div class="card border-light-subtle shadow-sm">
+                    <div class="card shadow-sm">
                         <div class="row g-0">
-                            <div class="col-12 col-md-6 ">
+                            <div class="col-12 col-md-6">
                                 <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy"
-                                    id="roleImage" src="img/login/dangNhap.jpg" alt="Đăng nhập tài khoản">
+                                    id="roleImage" src="img/login/dangNhap.png" alt="Đăng nhập tài khoản">
                             </div>
 
                             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
@@ -139,7 +147,7 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                             <div class="col-12">
                                                 <div class="mb-5">
                                                     <div class="mb-4">
-                                                        <a href="index.php" style="text-decoration: none; color: #25b1e8">&larr; Quay về trang chủ</a>
+                                                        <a href="index.php" style="text-decoration: none; color: #ffb700">&larr; Quay về trang chủ</a>
                                                     </div>
                                                     <h4 class="text-center">Đăng nhập tài khoản</h4>
                                                 </div>
@@ -147,7 +155,7 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                         </div>
 
                                         <!-- FORM ĐĂNG NHẬP -->
-                                        <form method="post" action="#!">
+                                        <form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
                                             <div class="row gy-3 overflow-hidden">
                                                 <!-- CHỌN VAI TRÒ -->
                                                 <div class="form-floating mb-3">
@@ -160,7 +168,6 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                                     </select>
 
                                                 </div>
-
 
                                                 <!-- EMAIL -->
                                                 <div class="col-12">
@@ -185,27 +192,25 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             name="remember_me" id="remember_me">
                                                         <label class="form-check-label text-secondary"
-                                                            for="remember_me">
-                                                            Ghi nhớ tài khoản
+                                                            for="remember_me">Ghi nhớ tài khoản
                                                         </label>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-12">
                                                     <div class="d-grid">
-                                                        <button class="btn btn-lg text-white" style="background-color: #25b1e8;" type="submit">Đăng nhập</button>
+                                                        <button class="btn btn-lg text-white" style="background-color: #feca7a;" type="submit">Đăng nhập</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
 
-
                                         <div class="row">
                                             <div class="col-12">
                                                 <div
-                                                    class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
-                                                    <a href="role-select.php" class="text-decoration-none" style="color: #25b1e8">Tạo tài khoản mới</a>
-                                                    <a href="forgot-password.php" class="text-decoration-none" style="color: #25b1e8">Quên mật khẩu?</a>
+                                                    class="d-flex gap-2 gap-md-4 flex-md-row justify-content-center mt-5">
+                                                    <a href="role-select.php" class="text-decoration-none" style="color: #ffb700">Tạo tài khoản mới</a>
+                                                    <a href="forgot-password.php" class="text-decoration-none" style="color: #ffb700">Quên mật khẩu?</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -228,12 +233,12 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
             // Thay đổi ảnh dựa trên vai trò
             switch (selectedRole) {
                 case 'student':
-                    roleImage.src = 'img/login/student.jpg';
+                    roleImage.src = 'img/login/student.png';
                     roleImage.alt = 'Học sinh';
                     roleImage.style.objectPosition = 'center';
                     break;
                 case 'teacher':
-                    roleImage.src = 'img/login/teacher.jpg';
+                    roleImage.src = 'img/login/teacher.png';
                     roleImage.alt = 'Giáo viên';
                     roleImage.style.objectPosition = 'left';
                     break;
@@ -253,6 +258,7 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
             }
         });
     </script>
+
 </body>
 
 </html>

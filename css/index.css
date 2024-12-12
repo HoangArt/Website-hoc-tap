@@ -13,20 +13,6 @@
     margin: 0;
 }
 
-
-/* VỀ CHÚNG TÔI */
-/* START */
-#about_us {
-    background-color: #feca73;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center
-}
-
-/* END*/
-
-
 section.py-5 {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -53,11 +39,29 @@ img.img-fluid {
 }
 
 
-/* THÂN TRANG*/
+/* THÂN TRANG */
 
 .banner {
     background-color: #feca7a;
 }
+
+/* KHÓA HỌC */
+.courses{
+    transition: all 0.3s ease;
+}
+
+.courses:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.courses:hover i {
+    transition: all 0.3s ease;
+    color: #feca7a;
+}
+/* END KHÓA HỌC */
 
 .features {
     background-color: #FFF9EC;
@@ -67,3 +71,16 @@ img.img-fluid {
 .achievements {
     background-color: #feca7a;
 }
+
+/* VỀ CHÚNG TÔI */
+/* START */
+.about_us {
+    background-color: #feca73;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+/* END THÂN TRANG */

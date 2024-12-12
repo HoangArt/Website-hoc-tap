@@ -15,11 +15,11 @@ if (isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo tài khoản mới | Herculis</title>
     <link href="../css/sign-up.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="img/"> <!-- Tạo icon -->
+    <link rel="icon" type="image/x-icon" href="../img/logo/Ongnho-icon.png">
+    <title>Tạo tài khoản mới cho Giáo viên | Ong Nhỏ</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@ if (isset($_SESSION['email'])) {
                         <div class="row g-0">
                             <div class="col-12 col-md-6 ">
                                 <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy"
-                                    id="roleImage" src="../img/login/teacher.jpg" alt="Đăng ký tài khoản">
+                                    id="roleImage" src="../img/login/teacher.png" alt="Đăng ký tài khoản">
                             </div>
 
                             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
@@ -41,7 +41,7 @@ if (isset($_SESSION['email'])) {
                                             <div class="col-12">
                                                 <div class="mb-5">
                                                     <div class="mb-4">
-                                                        <a href="../role-select.html" style="text-decoration: none; color: #25b1e8">&larr; Thay đổi vai trò</a>
+                                                        <a href="../role-select.php" style="text-decoration: none; color: #ffb700">&larr; Thay đổi vai trò</a>
                                                     </div>
                                                     <!-- THÔNG BÁO LỖI -->
                                                     <?php if (isset($_SESSION['message'])): ?>
@@ -120,10 +120,18 @@ if (isset($_SESSION['email'])) {
                                                     </div>
                                                 </div>
 
+                                                <div class="col-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="agree_terms" id="agree_terms" required>
+                                                        <label class="form-check-label text-secondary" for="agree_terms">
+                                                            Tôi đồng ý với <a href="../support/terms-of-service.php" target="_blank">Điều khoản dịch vụ</a> và <a href="../support/privacy-policy.php" target="_blank">Chính sách quyền riêng tư</a> <span class="text-danger">*</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-12">
                                                     <div class="d-grid">
-                                                        <button class="btn btn-lg text-white" style="background-color: #25b1e8;" type="submit">Tạo tài khoản</button>
+                                                        <button class="btn btn-lg text-white" style="background-color: #feca7a;" type="submit">Tạo tài khoản</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,7 +142,7 @@ if (isset($_SESSION['email'])) {
                                             <div class="col-12">
                                                 <div
                                                     class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
-                                                    <p>Đã có tài khoản?<a href="../login.php" class="text-decoration-none" style="color: #25b1e8"> Đăng nhập ngay!</a></p>
+                                                    <p>Đã có tài khoản?<a href="../login.php" class="text-decoration-none" style="color: #ffb700"> Đăng nhập ngay!</a></p>
                                                 </div>
                                             </div>
                                         </div>

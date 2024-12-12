@@ -1,0 +1,36 @@
+.about-us-link {
+    padding: 15px 114px;
+    background-color: #FFF9EC;
+    border-bottom: 2px solid #333;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+.about-us-link nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.about__breadcrumb {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.about__breadcrumb li {
+    display: inline;
+}
+
+.about__breadcrumb a {
+    text-decoration: none;
+    color: #feca73;
+    transition: color 0.3s;
+}
+
+.about__breadcrumb a:hover {
+    color: black;
+}

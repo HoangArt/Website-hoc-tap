@@ -15,17 +15,15 @@ if (isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chọn vai trò của bạn</title>
+    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
+    <title>Chọn vai trò của bạn | Ong Nhỏ</title>
 
     <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
-        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        /* Căn chỉnh giao diện vào giữa */
         body {
-            background-color: #f5f5f5;
-            /* Nền màu xám nhạt */
+            background-color: #f0f0f0;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -35,7 +33,6 @@ if (isset($_SESSION['email'])) {
 
         .container {
             background: #fff;
-            /* Nền trắng cho hộp */
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -44,7 +41,6 @@ if (isset($_SESSION['email'])) {
 
         .role-card {
             cursor: pointer;
-            /* Đổi con trỏ chuột thành bàn tay */
             border: 2px solid transparent;
             border-radius: 10px;
             transition: all 0.3s ease-in-out;
@@ -53,26 +49,22 @@ if (isset($_SESSION['email'])) {
         }
 
         .role-card:hover {
-            border-color: #25b1e8;
+            border-color: #feca7a;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* Khi chọn một lựa chọn */
         .role-card.selected {
-            background-color: #25b1e8;
-            /* Nền màu xanh */
+            background-color: #feca7a;
             color: #fff;
-            /* Màu chữ trắng */
         }
 
         .role-card.selected h5 {
             color: #fff;
-            /* Màu chữ tiêu đề */
         }
 
         .role-card.selected i {
             color: #fff !important;
-            /* Thay đổi màu icon khi chọn */
         }
 
         .btn-custom {
@@ -83,20 +75,20 @@ if (isset($_SESSION['email'])) {
 </head>
 
 <body>
-    <div class="container text-center">
+    <div class="container text-center roleSelect">
         <div id="error-alert" class="alert alert-warning alert-dismissible fade d-none mt-3" role="alert">
-            <span id="error-message">Vui lòng chọn vai trò để tiếp tục.</span>
+            <span id="error-message">Vui lòng chọn vai trò để tiếp tục</span>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-        <h1 class="">Đăng ký tài khoản</h1>
-        <p class="mb-5">Lựa chọn vai trò để tiếp tục</p>
+        <h5 class="" style="color: #ffb700">Đăng ký tài khoản</h5>
+        <h1 class="mb-5">Lựa chọn vai trò để tiếp tục</h1>
         <div class="row justify-content-between align-items-center mb-4">
             <!-- Admin Card -->
             <div class="col-4">
                 <div class="role-card p-4 text-center" onclick="selectRole(this)" data-role="student">
                     <div class="mb-3">
-                        <i class="fa-solid fa-graduation-cap" style="font-size: 2rem; color: #25b1e8;"></i>
+                        <i class="fa-solid fa-graduation-cap" style="font-size: 2rem; color: #feca7a;"></i>
                     </div>
                     <h5>Học sinh</h5>
                 </div>
@@ -106,7 +98,7 @@ if (isset($_SESSION['email'])) {
             <div class="col-4">
                 <div class="role-card p-4 text-center" onclick="selectRole(this)" data-role="teacher">
                     <div class="mb-3">
-                        <i class="fa-solid fa-person-chalkboard" style="font-size: 2rem; color: #25b1e8;"></i>
+                        <i class="fa-solid fa-person-chalkboard" style="font-size: 2rem; color: #feca7a;"></i>
                     </div>
                     <h5>Giáo viên</h5>
                 </div>
@@ -116,7 +108,7 @@ if (isset($_SESSION['email'])) {
             <div class="col-4">
                 <div class="role-card p-4 text-center" onclick="selectRole(this)" data-role="parent">
                     <div class="mb-3">
-                        <i class="fa-solid fa-person-breastfeeding" style="font-size: 2rem; color: #25b1e8;"></i>
+                        <i class="fa-solid fa-person-breastfeeding" style="font-size: 2rem; color: #feca7a;"></i>
                     </div>
                     <h5>Phụ huynh</h5>
                 </div>
@@ -124,8 +116,8 @@ if (isset($_SESSION['email'])) {
         </div>
 
         <div class="d-flex justify-content-center gap-3 mt-5">
-            <a href="index.php"><button class="btn btn-secondary btn-custom text-decoration-none">Quay lại</button></a>
-            <button class="btn btn-custom text-white" style="background-color: #25b1e8;" onclick="continueAction()">Tiếp
+            <a href="javascript:history.back()"><button class="btn btn-secondary btn-custom text-decoration-none">Quay lại</button></a>
+            <button class="btn btn-custom" style="background-color: #feca7a;" onclick="continueAction()">Tiếp
                 tục</button>
         </div>
     </div>
@@ -166,7 +158,6 @@ if (isset($_SESSION['email'])) {
                 errorAlert.classList.add('show');
             }
         }
-
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

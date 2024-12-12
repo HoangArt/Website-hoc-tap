@@ -3,6 +3,7 @@
 ## Màu trang: 
 #FFF9EC (Nhạt)
 #feca7a (Đậm)
+#ffb700 (Đậm, nền trắng)
 
 ## Việc cần làm:
 

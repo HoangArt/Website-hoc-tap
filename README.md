@@ -21,10 +21,10 @@
 - Thống nhất css
 - Sửa thông báo lỗi cho login.php
 - Trang email được gửi thành công
+- Sửa avatar người dùng
 
 ### index.php
 - Cải thiện giao diện của trang
-- Thêm danh sách môn học ở dưới
 
 ### contact-us.php
 - Cải thiện giao diện

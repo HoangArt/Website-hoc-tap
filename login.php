@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error_message = "<p class='text-center text-danger'>Vui lòng nhập đầy đủ thông tin (vai trò, email và mật khẩu).</p>";
     } else {
         // Truy vấn cơ sở dữ liệu để xác thực thông tin đăng nhập
-        $sql = "SELECT u.id, u.full_name, u.password, r.role_name
+        $sql = "SELECT u.user_id, u.full_name, u.password, u.date_of_birth, u.phone_number, r.role_name
                 FROM users u
                 JOIN roles r ON u.role_id = r.id
                 WHERE u.email = ? AND r.role_name = ?";
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Nếu có người dùng khớp với thông tin
                 if ($stmt->num_rows == 1) {
                     // Liên kết kết quả
-                    $stmt->bind_result($user_id, $full_name, $hashed_password, $role_name);
+                    $stmt->bind_result($user_id, $full_name, $hashed_password, $date_of_birth, $phone_number, $role_name);
                     $stmt->fetch();
 
                     // Kiểm tra mật khẩu
@@ -60,6 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['user_id'] = $user_id;
                         $_SESSION['email'] = $email;
                         $_SESSION['full_name'] = $full_name;
+                        $_SESSION['date_of_birth'] = $date_of_birth;
+                        $_SESSION['phone_number'] = $phone_number;
                         $_SESSION['role_name'] = $role_name;
 
                         // Chuyển hướng đến trang chính
@@ -86,9 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Đóng kết nối cơ sở dữ liệu
 $conn->close();
-?>
 
-<?php
 // Kiểm tra nếu tham số 'register' trong URL có giá trị 'success'
 if (isset($_GET['register']) && $_GET['register'] == 'success') {
     echo "<p class='text-center text-warning'>Cảnh báo: Bạn đã đăng ký thành công! Hãy đăng nhập ngay bây giờ.</p>";
@@ -105,7 +105,8 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png"> <!-- Tạo icon -->
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
     <style>
         .form-floating .form-select {
             height: calc(2.5em + 0.75rem);
@@ -155,7 +156,7 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                         </div>
 
                                         <!-- FORM ĐĂNG NHẬP -->
-                                        <form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
+                                        <form method="post" action="<?= $_SERVER["PHP_SELF"]; ?>">
                                             <div class="row gy-3 overflow-hidden">
                                                 <!-- CHỌN VAI TRÒ -->
                                                 <div class="form-floating mb-3">
@@ -184,6 +185,11 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                                         <input type="password" class="form-control" name="password"
                                                             id="password" value="" placeholder="Password" required>
                                                         <label for="password" class="form-label">Mật khẩu</label>
+
+                                                        <button type="button" id="togglePassword"
+                                                            class="btn btn-outline-secondary btn-sm position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">
+                                                            Hiện
+                                                        </button>
                                                     </div>
                                                 </div>
 
@@ -199,7 +205,9 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
 
                                                 <div class="col-12">
                                                     <div class="d-grid">
-                                                        <button class="btn btn-lg text-white" style="background-color: #feca7a;" type="submit">Đăng nhập</button>
+                                                        <button class="btn btn-lg text-white"
+                                                            style="background-color: #feca7a;" type="submit">Đăng nhập
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,6 +266,8 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
             }
         });
     </script>
+
+    <script src="../js/password.js"></script>
 
 </body>
 

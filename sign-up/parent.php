@@ -15,7 +15,7 @@ if (isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/sign-up.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="../img/logo/Ongnho-icon.png">
@@ -110,6 +110,11 @@ if (isset($_SESSION['email'])) {
                                                         <input type="password" class="form-control" name="password"
                                                             id="password" value="" placeholder="Password" required>
                                                         <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
+
+                                                        <button type="button" id="togglePassword"
+                                                            class="btn btn-outline-secondary btn-sm position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">
+                                                            Hiện
+                                                        </button>
                                                     </div>
                                                 </div>
 
@@ -117,6 +122,11 @@ if (isset($_SESSION['email'])) {
                                                     <div class="form-floating mb-3">
                                                         <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
                                                         <label for="confirm_password" class="form-label">Nhập lại mật khẩu <span class="text-danger">*</span></label>
+
+                                                        <button type="button" id="toggleConfirmPassword"
+                                                            class="btn btn-outline-secondary btn-sm position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">
+                                                            Hiện
+                                                        </button>
                                                     </div>
                                                 </div>
 
@@ -169,6 +179,8 @@ if (isset($_SESSION['email'])) {
             });
         });
     </script>
+    
+    <script src="../js/password.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

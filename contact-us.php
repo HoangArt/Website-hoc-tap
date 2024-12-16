@@ -8,7 +8,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liên lạc | Herculis</title>
+    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
+    <title>Liên lạc | Ong Nhỏ</title>
     <link rel="stylesheet" href="css/styles.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -79,7 +80,8 @@ session_start();
 
                     <!-- LIÊN LẠC -->
                     <li class="nav-item">
-                        <a href="contact-us.php" class="nav-link text-dark d-flex flex-column align-items-center">
+                        <a href="contact-us.php" class="nav-link text-dark d-flex flex-column align-items-center"
+                        style="color: #feca73 !important;">
                             <i class="fa-regular fa-address-book fa-3x mb-2"></i>
                             <span>Liên lạc</span>
                         </a>
@@ -91,7 +93,7 @@ session_start();
                 <div class="position-relative">
                     <?php if (isset($_SESSION['email'])): ?>
                         <!-- User Avatar -->
-                        <img src="img/user.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
+                        <img src="img/avatar/default-avatar.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
 
                         <!-- Menu Dropdown -->
                         <div class="sub-menu-wrap" id="subMenu" aria-hidden="true">
@@ -129,7 +131,7 @@ session_start();
     </header>
 
     <!-- FORM LIÊN LẠC -->
-    <section class="py-3 py-md-5 py-xl-8" style="margin-top: 80px;">
+    <section class="py-3 py-md-5 py-xl-8" style="margin-top: 140px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -148,7 +150,7 @@ session_start();
 
                                                 <!-- ĐỊA CHỈ -->
                                                 <div class="d-flex mb-4 mb-xxl-5">
-                                                    <div class="me-4 text-primary">
+                                                    <div class="me-4" style="color: #ffb700;">
                                                         <i class="fas fa-map-marker-alt fa-3x"></i>
                                                     </div>
 
@@ -164,7 +166,7 @@ session_start();
                                                 <div class="row mb-4 mb-xxl-5">
                                                     <div class="col-12 col-xxl-6">
                                                         <div class="d-flex mb-4 mb-xxl-0">
-                                                            <div class="me-4 text-primary">
+                                                            <div class="me-4" style="color: #ffb700;">
                                                                 <i class="fas fa-phone fa-3x"></i>
                                                             </div>
                                                             <div>
@@ -182,15 +184,15 @@ session_start();
                                                     <!-- EMAIL -->
                                                     <div class="col-12 col-xxl-6">
                                                         <div class="d-flex mb-0">
-                                                            <div class="me-4 text-primary">
+                                                            <div class="me-4" style="color: #ffb700;">
                                                                 <i class="fas fa-envelope fa-3x"></i>
                                                             </div>
                                                             <div>
                                                                 <h4 class="mb-3">Email</h4>
                                                                 <p class="mb-0">
                                                                     <a class="link-opacity-100-hover text-decoration-none"
-                                                                        href="mailto:contact@herculis.com">
-                                                                        contact@herculis.com</a>
+                                                                        href="mailto:contact@ongnho.vn">
+                                                                        contact@ongnho.vn</a>
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -232,7 +234,9 @@ session_start();
                                                     <!-- SỐ ĐIỆN THOẠI -->
                                                     <div class="col-12">
                                                         <label for="phone" class="form-label">Phone Number</label>
-                                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="0912345678">
+                                                        <input type="tel" class="form-control" id="phone" name="phone" 
+                                                        
+                                                        placeholder="0912345678">
 
                                                     </div>
 
@@ -328,7 +332,7 @@ session_start();
                             <p><i class="fas fa-phone pe-2"></i>024 3863 0001</p>
                         </li>
                         <li>
-                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@herculis.com</p>
+                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@ongnho.vn</p>
                         </li>
                     </ul>
                 </div>

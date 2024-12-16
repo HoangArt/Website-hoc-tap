@@ -39,7 +39,8 @@ session_start();
 
                     <!-- VỀ CHÚNG MÌNH -->
                     <li class="nav-item">
-                        <a href="about-us.php" class="nav-link text-dark d-flex flex-column align-items-center">
+                        <a href="about-us.php" class="nav-link text-dark d-flex flex-column align-items-center"
+                            style="color: #feca73 !important;">
                             <i class="fa-solid fa-users fa-3x mb-2"></i>
                             <span>Về chúng mình</span>
                         </a>
@@ -59,7 +60,7 @@ session_start();
                 <div class="position-relative">
                     <?php if (isset($_SESSION['email'])): ?>
                         <!-- User Avatar -->
-                        <img src="img/user.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
+                        <img src="img/avatar/default-avatar.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
 
                         <!-- Menu Dropdown -->
                         <div class="sub-menu-wrap" id="subMenu" aria-hidden="true">
@@ -165,62 +166,82 @@ session_start();
     </section>
 
     <!-- CON SỐ KHÔNG NÓI DỐI-->
-    <section class="achievements ">
-        <div class="py-5 py-xl-8 achievements">
-            <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                        <h2 class="mb-4 display-5 text-center">Thành tựu nổi bật</h2>
-                        <p class="text-secondary mb-5 text-center lead fs-4">
-                            Những con số này được thu thập trong suốt thời gian thành lập và phát triển của trang web.
+    <section class="achivements py-4 py-sm-5">
+        <div class="container">
+            <div class="text-center mb-4 mb-lg-5">
+                <span class="d-inline-block sub-heading fw-semibold mb-2">
+                    Những con số không nói dối
+                </span>
+                <h2 class="fw-bold text-dark display-5">Thành tựu nổi bật*</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="fa-regular fa-face-smile"
+                                style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
+                        </div>
+
+                        <h5 class="fs-4 fw-semibold mb-2">1 triệu</h5>
+                        <p class="text-muted mx-3 mx-lg-2 mx-xl-4">
+                            Học sinh và người học đang theo học tại Ong Nhỏ
                         </p>
-                        <hr class="w-50 mx-auto mb-5 mb-xl-9" ">
                     </div>
                 </div>
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="fa-regular fa-face-smile"
+                                style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
+                        </div>
+
+                        <h5 class="fs-4 fw-semibold mb-2">1 triệu</h5>
+                        <p class="text-muted mx-3 mx-lg-2 mx-xl-4">
+                            Học sinh và người học đang theo học tại Ong Nhỏ
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-user-graduate"
+                                style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
+                        </div>
+
+                        <h5 class="fs-4 fw-semibold mb-2">99,99%</h5>
+                        <p class="text-muted mx-3 mx-lg-2 mx-xl-4">
+                        Bạn nhỏ đỗ vào các trường trung học cơ sở khi theo học tại Ong Nhỏ
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-award"
+                                style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
+                        </div>
+
+                        <h5 class="fs-4 fw-semibold mb-2">100+</h5>
+                        <p class="text-muted mx-3 mx-lg-2 mx-xl-4">
+                            Số giải thưởng trong và ngoài nước Ong Nhỏ đã đạt được
+                        </p>
+                    </div>
+                </div>
+
             </div>
 
-            <div class=" container overflow-hidden">
-                        <div class="row gy-5 gy-md-6 gy-lg-0">
-                            <div class="col-6 col-lg-3">
-                                <div class="text-center">
-                                    <div class="d-flex align-items-center justify-content-center bg-primary mb-3 mx-auto bsb-circle" style="height: 250px;">
-                                        <i class="fa-regular fa-face-smile fa-3x"></i>
-                                    </div>
-                                    <h5 class="display-6 fw-bold m-1">1 triệu</h5>
-                                    <p class="text-secondary m-0">Học sinh và người học đang theo học tạo Ong Nhỏ</p>
-                                </div>
-                            </div>
+            <p>
+                * Số liệu được lấy từ trong trí tưởng tượng của Ong Nhỏ. 
+                Trí tưởng tượng quả là một điều tuyệt vời phải không?
+                Nó biến điều không tưởng thành hiện thực, biến giấc mơ thành
+                thực tế
+            </p>
+        </div>
 
-                            <div class="col-6 col-lg-3">
-                                <div class="text-center">
-                                    <div class="d-flex align-items-center justify-content-center bg-primary mb-3 mx-auto bsb-circle" style="height: 250px;">
-
-                                    </div>
-                                    <h5 class="display-6 fw-bold m-1">1890+</h5>
-                                    <p class="text-secondary m-0">Issues Solved</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-3">
-                                <div class="text-center">
-                                    <div class="d-flex align-items-center justify-content-center bg-primary mb-3 mx-auto bsb-circle" style="height: 250px;">
-                                        <i class="fa-solid fa-user-graduate"></i>
-                                    </div>
-                                    <h5 class="display-6 fw-bold m-1">99,99%</h5>
-                                    <p class="text-secondary m-0">Bạn nhỏ đỗ vào các trường trung học cơ sở khi theo học tại Ong Nhỏ</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-3">
-                                <div class="text-center">
-                                    <div class="d-flex align-items-center justify-content-center bg-primary mb-3 mx-auto bsb-circle" style="height: 250px;">
-                                        <i class="fa-solid fa-award"></i>
-                                    </div>
-                                    <h5 class="display-6 fw-bold m-1">100+</h5>
-                                    <p class="text-secondary m-0">Số giải thưởng trong và ngoài nước Ong Nhỏ đã đạt được</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        
     </section>
 
     <!-- FOOTER -->
@@ -284,7 +305,7 @@ session_start();
                             <p><i class="fas fa-phone pe-2"></i>024 3863 0001</p>
                         </li>
                         <li>
-                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@herculis.com</p>
+                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@ongnho.vn</p>
                         </li>
                     </ul>
                 </div>

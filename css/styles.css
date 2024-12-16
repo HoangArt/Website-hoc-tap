@@ -45,8 +45,8 @@ header .nav-link span {
 
 /* ẢNH USER */
 .user-pic {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -66,6 +66,7 @@ header .nav-link span {
   transition: all 0.3s ease;
   opacity: 0;
   transform: translateY(-10px);
+  margin-top: 10px;
 }
 
 .sub-menu-wrap.show {
@@ -124,7 +125,6 @@ header .nav-link span {
   margin: 0;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .sub-menu-wrap {
     right: 10px;
@@ -132,7 +132,6 @@ header .nav-link span {
     width: auto;
   }
 }
-
 
 /* END ẢNH USER*/
 
@@ -256,7 +255,12 @@ header .nav-link span {
   padding: 0;
 }
 
-
+/* Ẩn biểu tượng kính lúp trong các trường mật khẩu */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-textfield-decoration-container {
+    display: none;
+}
 
 /* FOOTER */
 #footer {

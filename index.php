@@ -23,7 +23,7 @@ if (isset($_SESSION['message'])) {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.css">
     <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
-    <title>Ong Nhỏ | Ong nhỏ, tri thức lớn</title>
+    <title>Ong nhỏ, tri thức lớn</title>
 </head>
 
 <body style="background-color: #FFF9EC">
@@ -67,12 +67,12 @@ if (isset($_SESSION['message'])) {
                 <div class="position-relative">
                     <?php if (isset($_SESSION['email'])): ?>
                         <!-- User Avatar -->
-                        <img src="img/user.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
+                        <img src="img/avatar/default-avatar.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
 
                         <!-- Menu Dropdown -->
                         <div class="sub-menu-wrap" id="subMenu" aria-hidden="true">
                             <div class="sub-menu">
-                                <!-- Thông tin người dùng -->
+                                <!-- THÔNG TIN USER -->
                                 <div class="user-info">
                                     <img src="img/user.png" alt="User Avatar">
                                     <h4><?= htmlspecialchars($_SESSION['full_name']); ?></h4>
@@ -109,32 +109,34 @@ if (isset($_SESSION['message'])) {
         <div class="container py-5 banner">
             <div class="row align-items-center" style="margin-top: 40px">
                 <!-- Hình ảnh -->
-                <div class="col-md-6 text-center">
+                <div class="col-md-6">
                     <img src="img/banner.jpg" class="img-fluid rounded shadow"
                         alt="Banner học tập" style="max-height: 450px; object-fit: cover;">
                 </div>
 
                 <!-- Nội dung -->
                 <div class="col-md-6">
-                    <h3 class="display-6 fw-normal">
-                        Chia sẻ kiến thức,
-                        <br>khơi nguồn đam mê,
-                        <br>học tập hiệu quả cho
-                        <span class="display-6 fw-bold text-decoration-underline">mọi người</span>
-                    </h3>
+                    <span class="hero-badge py-1 px-3 mb-3 text-white d-inline-block shadow text-uppercase rounded-pill"
+                        style="background-color: #fc7a57;">
+                        Dịch vụ chất lượng cao
+                    </span>
 
-
-                    <p class="lead fw-light fs-5">
-                        Sứ mệnh của chúng mình là cung cấp tài liệu học tập miễn phí,
-                        giúp học sinh và những người đam mê học hỏi có thể tiếp cận kiến thức một cách dễ dàng.<br><br>
-                        Chúng mình cam kết tạo ra một môi trường học tập năng động, sáng tạo.
-                        Mọi người không chỉ học hỏi một cách hiệu quả mà còn cảm thấy hứng thú và đam mê với quá trình học tập.
+                    <h1 class="mb-3 fw-bolder display-6">
+                        Chia sẻ kiến thức,<br>
+                        Khơi nguồn đam mê,<br>
+                        Học tập hiệu quả cho <span class="text-primary">mọi người</span></h1>
+                    <p class="text-secondary mb-4 fs-5 pe-md-5 me-md-5">
+                        Sứ mệnh của chúng mình là cung cấp tài liệu học tập miễn phí cho mọi người.<br>
+                        Chúng mình cam kết tạo ra một môi trường học tập năng động, sáng tạo, giúp
+                        mọi người học tập hiệu quả, hứng thú và đam mê với quá trình học tập.
                     </p>
-                    <a class="btn btn-lg text-white" style="background-color: #1e96fc;" href="#">Bắt đầu học</a>
+                    <a href="" class="btn btn-md btn-primary px-5 py-3 rounded-pill shadow-lg text-white">Bắt đầu học</a>
+
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- KHÓA HỌC -->
     <section>
@@ -566,6 +568,44 @@ if (isset($_SESSION['message'])) {
                         <i class="fas fa-quote-right fa-3x"></i>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ĐƠN BỊ HỖ TRỢ-->
+    <section class="speedyui speedyui-partner py-5"
+        style="margin-bottom: 100px;">
+        <div class="container">
+            <h3 class="text-center mb-0">Đơn vị đồng hành hỗ trợ</h3>
+            <div class="row g-lg-0 g-3 mt-lg-5 mt-3">
+                <div class="col-3">
+                    <div class="border p-4 text-center d-flex align-items-center justify-content-center"
+                        style="background-color:white; height: 150px">
+                        <img src="img/partner/huce.png" style="height: 100px;">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="border p-4 text-center d-flex align-items-center justify-content-center"
+                        style="background-color:white; height: 150px">
+                        <img src="img/partner/Google_2015_logo.svg" style="height: 50px;">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="border p-4 text-center d-flex align-items-center justify-content-center"
+                        style="background-color:white; height: 150px">
+                        <img src="img/partner/OpenAI_Logo.png" style="height: 50px;">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="border p-4 text-center d-flex align-items-center justify-content-center"
+                        style="background-color:white; height: 150px">
+                        <img src="img/partner/Claude_AI_logo.svg.png" style="height: 50px;">
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>

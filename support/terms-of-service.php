@@ -232,7 +232,7 @@ session_start();
                             <p><i class="fas fa-phone pe-2"></i>024 3863 0001</p>
                         </li>
                         <li>
-                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@herculis.com</p>
+                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@ongnho.vn</p>
                         </li>
                     </ul>
                 </div>

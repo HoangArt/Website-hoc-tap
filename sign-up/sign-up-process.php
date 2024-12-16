@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
 
+    $_SESSION['email_sent_status'] = 0;
     // Khởi tạo thông báo lỗi
     $_SESSION['message'] = null;
 
@@ -81,17 +82,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $confirm_email_token = bin2hex(random_bytes(32));
 
+        $user_id = bin2hex(random_bytes(16));
+
         // Thêm thông tin người dùng mới vào Cơ sở dữ liệu
-        $sql_insert_user = "INSERT INTO users (role_id, full_name, date_of_birth, email, phone_number, password, confirm_email_token) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql_insert_user = "INSERT INTO users (user_id, role_id, full_name, date_of_birth, email, phone_number, password, confirm_email_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql_insert_user);
-        $stmt->bind_param("sssssss", $role, $full_name, $date_of_birth, $email, $phone_number, $hashed_password, $confirm_email_token);
+        $stmt->bind_param("ssssssss", $user_id, $role, $full_name, $date_of_birth, $email, $phone_number, $hashed_password, $confirm_email_token);
 
         if ($stmt->execute()) {
             // Gửi email xác nhận
             $subject = "Xác nhận tài khoản của bạn";
             $body = "Xin chào $full_name,<br><br>";
             $body .= "Vui lòng nhấn vào liên kết sau để xác nhận tài khoản của bạn:<br>";
-            $body .= "<a href='http://localhost/Website-hoc-tap/sign-up/confirm-email.php?token=$confirm_email_token'>Click để xác nhận</a>";
+            $body .= "<a href='http://localhost/OngNho/sign-up/confirm-email.php?token=$confirm_email_token'>Click để xác nhận</a>";
 
             if (sendConfirmationEmail($email, $subject, $body)) {
                 header("Location: ../mail-sent-successfully/confirm-email.html");

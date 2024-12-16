@@ -39,7 +39,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $searchQuery; ?> | Tìm kiếm trên Herculis </title>
+    <title><?php echo $searchQuery; ?> | Tìm kiếm trên Ong Nhỏ </title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/search.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -55,7 +55,7 @@ $conn->close();
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <!-- LOGO -->
                 <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <img src="img/Herculis_logo.png" class="bi me-2" height="32" role="img" aria-label="Bootstrap">
+                    <img src="img/Ong Nhỏ_logo.png" class="bi me-2" height="32" role="img" aria-label="Bootstrap">
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -315,7 +315,7 @@ $conn->close();
 
                     <div class="bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto"
                         style="width: 250px; height: 150px;">
-                        <img src="img/Herculis_logo.png" height="70" alt="" loading="lazy" />
+                        <img src="img/Ong Nhỏ_logo.png" height="70" alt="" loading="lazy" />
                     </div>
 
                     <p class="text-center">
@@ -368,7 +368,7 @@ $conn->close();
                             <p><i class="fas fa-phone pe-2"></i>024 3863 0001</p>
                         </li>
                         <li>
-                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@herculis.com</p>
+                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@ongnho.vn</p>
                         </li>
                     </ul>
                 </div>
@@ -377,7 +377,7 @@ $conn->close();
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            &copy; 2024 Copyright Herculis.
+            &copy; 2024 Copyright Ong Nhỏ.
         </div>
     </footer>
 </body>

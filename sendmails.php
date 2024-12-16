@@ -33,7 +33,7 @@ function sendConfirmationEmail($toEmail, $subject, $body) {
     $mail = getMailer();
     
     try {
-        $mail->setFrom($_ENV['SMTP_USERNAME'], 'Herculis');
+        $mail->setFrom($_ENV['SMTP_USERNAME'], 'Ong Nhỏ');
         $mail->addAddress($toEmail);
         $mail->Subject = $subject;
         $mail->Body    = $body;

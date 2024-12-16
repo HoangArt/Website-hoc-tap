@@ -1,12 +1,5 @@
 <?php
 session_start();
-
-// Kiểm tra nếu người dùng đã đăng nhập chưa
-if (isset($_SESSION['email'])) {
-    $_SESSION['message'] = "Bạn đã đăng nhập rồi!";
-    header("Location: ../index.php");
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +8,7 @@ if (isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi thành công | Herculis</title>
+    <title>Gửi thành công | Ong Nhỏ</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -115,9 +108,9 @@ if (isset($_SESSION['email'])) {
                         <h1><i class="bi bi-check-circle"></i><span>Xác nhận tài khoản thành công!</span>
                         </h1>
                         <p>
-                            Bây giờ bạn đã có thể đăng nhập và khám phá những khả năng vô hạn cùng Herculis.
+                            Bây giờ bạn đã có thể đăng nhập và khám phá những khả năng vô hạn cùng Ong Nhỏ.
                         </p>
-                        <a href="../login.php" class="btn btn-lg">Đăng nhập tài khoản</a>
+                        <a href="../index.php" class="btn btn-lg">Trang chủ</a>
                     </div>
                 </div>
             </div>
@@ -127,7 +120,7 @@ if (isset($_SESSION['email'])) {
     <footer class="text-center text-lg-start text-white" id="footer">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: #25b1e8">
-            &copy; 2024 Copyright Herculis.
+            &copy; 2024 Copyright Ong Nhỏ.
         </div>
     </footer>
 </body>

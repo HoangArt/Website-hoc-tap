@@ -20,14 +20,10 @@
 - Cải thiện drop down menu cho người dùng
 - Thống nhất css
 - Sửa thông báo lỗi cho login.php
-- Trang email được gửi thành công
 - Sửa avatar người dùng
 
 ### index.php
 - Cải thiện giao diện của trang
-
-### contact-us.php
-- Cải thiện giao diện
 
 ### login.php
 - Tạo chức năng cho nút ghi nhớ tài khoản

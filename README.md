@@ -20,7 +20,6 @@
 - Cải thiện drop down menu cho người dùng
 - Thống nhất css
 - Sửa thông báo lỗi cho login.php
-- Trang email được gửi thành công
 - Sửa avatar người dùng
 
 ### index.php

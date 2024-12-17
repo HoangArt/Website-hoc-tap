@@ -26,9 +26,6 @@
 ### index.php
 - Cải thiện giao diện của trang
 
-### contact-us.php
-- Cải thiện giao diện
-
 ### login.php
 - Tạo chức năng cho nút ghi nhớ tài khoản
 

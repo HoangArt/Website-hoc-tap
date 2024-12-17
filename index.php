@@ -23,7 +23,7 @@ if (isset($_SESSION['message'])) {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.css">
     <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
-    <title>Ong nhỏ, tri thức lớn</title>
+    <title>Ong nhỏ, tri thức lớn!</title>
 </head>
 
 <body style="background-color: #FFF9EC">
@@ -37,6 +37,25 @@ if (isset($_SESSION['message'])) {
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <!-- NÚT BẤM DÀNH CHO GIÁO VIÊN VÀ PHỤ HUYNH -->
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <?php if ($_SESSION['role_name'] == "teacher"): ?>
+                            <li class="nav-item">
+                                <a href="search.php" class="nav-link text-dark d-flex flex-column align-items-center">
+                                    <i class="fa-solid fa-magnifying-glass fa-3x mb-2"></i>
+                                    <span>Hello</span>
+                                </a>
+                            </li>
+                        <?php elseif ($_SESSION['role_name'] == "parent"): ?>
+                            <li class="nav-item">
+                                <a href="parent.php" class="nav-link text-dark d-flex flex-column align-items-center">
+                                    <i class="fa-solid fa-hands-holding-child fa-3x mb-2"></i>
+                                    <span>Quản lý con cái</span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                    <?php endif; ?>
+
                     <!-- KHÁM PHÁ -->
                     <li class="nav-item">
                         <a href="search.php" class="nav-link text-dark d-flex flex-column align-items-center">

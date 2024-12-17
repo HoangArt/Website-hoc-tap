@@ -277,34 +277,55 @@ $conn->close();
                     <div class="tab-pane fade" id="account-change-password">
                         <div class="card-body" style="margin-left: 100px; margin-right: 100px; margin-top: 20px; margin-bottom: 20px">
                             <div>
+                                <?php if ($is_verified === 0): ?>
+                                    <?php if ($email_sent_status === 0): ?>
+                                        <div class="alert alert-warning" role="alert">
+                                            Bạn chưa xác nhận tài khoản.
+                                            Do đó, bạn sẽ không thể chỉnh sửa thông tin tài khoản.
+                                            Vui lòng xác nhận tài khoản để có thể chỉnh sửa thông tin của bạn!
+                                            <a href="sign-up/confirm-email-again.php">Gửi lại thư xác nhận</a>
+                                        </div>
+                                    <?php elseif ($email_sent_status === 2): ?>
+                                        <div class="alert alert-success" role="alert">
+                                            Email xác nhận tài khoản đã được gửi thành công. Vui lòng kiểm tra hộp thư.<br>
+                                            Nếu không tìm thấy email, hãy kiểm tra thư mục **Spam** hoặc đợi một vài phút trước khi thử lại.
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                                 <h2>Thay đổi mật khẩu</h2>
                             </div>
 
-                            <form method="post" action="">
+                            <form method="post" action="change_user_information/change_password.php">
                                 <div class="mb-3">
                                     <label class="form-label">Mật khẩu hiện tại</label>
                                     <input type="password" class="form-control"
-                                        <?= ($email_sent_status == 0 || $email_sent_status == 2) ? 'readonly' : ''; ?>
-                                        style="background-color: <?= ($email_sent_status == 0 || $email_sent_status == 2) ? '#f0f0f0' : 'white'; ?>"
+                                        <?= ($is_verified == 0) ? 'readonly' : ''; ?>
+                                        style="background-color: <?= ($is_verified == 0) ? '#f0f0f0' : 'white'; ?>"
                                         value="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Mật khẩu mới</label>
                                     <input type="password" class="form-control"
-                                        <?= ($email_sent_status == 0 || $email_sent_status == 2) ? 'readonly' : ''; ?>
-                                        style="background-color: <?= ($email_sent_status == 0 || $email_sent_status == 2) ? '#f0f0f0' : 'white'; ?>"
+                                        <?= ($is_verified == 0) ? 'readonly' : ''; ?>
+                                        style="background-color: <?= ($is_verified == 0) ? '#f0f0f0' : 'white'; ?>"
                                         value="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Nhập lại mật khẩu mới</label>
                                     <input type="password" class="form-control"
-                                        <?= ($email_sent_status == 0 || $email_sent_status == 2) ? 'readonly' : ''; ?>
-                                        style="background-color: <?= ($email_sent_status == 0 || $email_sent_status == 2) ? '#f0f0f0' : 'white'; ?>"
+                                        <?= ($is_verified == 0) ? 'readonly' : ''; ?>
+                                        style="background-color: <?= ($is_verified == 0) ? '#f0f0f0' : 'white'; ?>"
                                         value="">
                                 </div>
 
+                                <?php if ($is_verified === 0): ?>
+                                <?php else: ?>
+                                    <p class="text-danger">
+                                        Nếu bạn quên mật khẩu của mình, vui lòng nhấn <a href="forgot-password.php">vào đây</a>
+                                    </p>
+                                <?php endif; ?>
                                 <button type="button" class="btn btn-primary">Lưu thay đổi</button>
                             </form>
                         </div>

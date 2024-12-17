@@ -23,6 +23,7 @@ session_start();
             margin: 0;
             display: flex;
             flex-direction: column;
+            background-color: #fff9ec;
         }
 
         .mail-seccess {
@@ -44,7 +45,7 @@ session_start();
         .success-inner h1 {
             font-size: 80px;
             text-shadow: 3px 5px 2px #3333;
-            color: #25b1e8;
+            color: #ffb700;
             font-weight: 700;
             margin-bottom: 20px;
         }
@@ -66,7 +67,7 @@ session_start();
 
         .success-inner .btn {
             color: #fff;
-            background-color: #25b1e8;
+            background-color: #ffb700;
             padding: 12px 30px;
             font-size: 18px;
             border-radius: 5px;
@@ -74,16 +75,16 @@ session_start();
         }
 
         .success-inner .btn:hover {
-            background-color: #1a91c3;
+            background-color: #feca7a;
         }
 
         .success-inner .btn:active {
-            background-color: #187a9b;
+            background-color: #feca7a;
             color: white;
         }
 
         footer {
-            background-color: #25b1e8;
+            background-color: #feca7a;
             text-align: center;
             color: white;
             padding: 10px 0;
@@ -117,9 +118,9 @@ session_start();
         </div>
     </section>
 
-    <footer class="text-center text-lg-start text-white" id="footer">
+    <footer class="text-center text-lg-start text-dark" id="footer">
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: #25b1e8">
+        <div class="text-center p-3">
             &copy; 2024 Copyright Ong Nhỏ.
         </div>
     </footer>

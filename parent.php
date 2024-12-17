@@ -24,7 +24,6 @@ session_start();
             --primary-color: #1a73e8;
             --text-color: #202124;
             --background-color: #f8f9fa;
-            --card-background: #ffffff;
             --border-radius: 12px;
         }
 
@@ -157,7 +156,6 @@ session_start();
 
         .account-section .account .settings,
         .account-section .account .delete {
-            text-decoration: none;
             padding: 8px 12px;
             border-radius: 6px;
             transition: all 0.3s ease;
@@ -205,29 +203,6 @@ session_start();
 
         .ad-section .ad-button:hover {
             background-color: #f0f0f0;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: var(--card-background);
-            margin: 5% auto;
-            padding: 25px;
-            border-radius: var(--border-radius);
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .close {
@@ -301,7 +276,7 @@ session_start();
     </style>
 </head>
 
-<body>
+<body style="background-color: #fff9ec;">
     <!-- HEADER -->
     <header>
         <div class="container" style="background-color: #FFF9EC;">
@@ -312,6 +287,15 @@ session_start();
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <!-- PHỤ HUYNH -->
+                    <li class="nav-item">
+                        <a href="parent.php" class="nav-link text-dark d-flex flex-column align-items-center"
+                            style="color: #feca73 !important;">
+                            <i class="fa-solid fa-hands-holding-child fa-3x mb-2"></i>
+                            <span>Quản lý con cái</span>
+                        </a>
+                    </li>
+
                     <!-- KHÁM PHÁ -->
                     <li class="nav-item">
                         <a href="search.php" class="nav-link text-dark d-flex flex-column align-items-center">
@@ -379,27 +363,36 @@ session_start();
         </div>
     </header>
 
+    <!-- NỘI DUNG -->
     <div class="container" style="margin-top: 200px;">
-        <h1>Chào mừng, <?= $_SESSION['full_name']; ?></h1>
-        <p style="text-align:center; color: var(--text-color); margin-bottom: 20px;">
-            Tài liệu dành cho phụ huynh
-        </p>
+        <div>
+            <h1>Chào mừng, <?= $_SESSION['full_name']; ?>!</h1>
+            <p style="text-align:center; color: var(--text-color); margin-bottom: 20px;">
+                Trang web dành cho phụ huynh!
+            </p>
+        </div>
 
-        <div class="account-section" id="accountSection">
-            <div class="add-account" onclick="document.getElementById('myModal').style.display='block'">
-                Thêm tài khoản cho con
-            </div>
+        <div class="account-section" id="accountSection" style="background-color: white; padding-bottom: 500px;">
+            <button class="add-account" data-bs-toggle="modal" data-bs-target="#myModal">
+                <i class="fa-solid fa-plus"></i>
+                Thêm tài khoản con
+            </button>
             <h2>Con của bạn</h2>
-            <p>Đây là tài khoản con của các bạn nhấp vào để xem tiến độ</p>
+            <p>
+                Đây là danh sách tài khoản con của bạn. Vui lòng nhấn vào tên để xem tiến độ
+            </p>
+
             <div class="account">
                 <img alt="Child account icon" src="https://storage.googleapis.com/a1aa/image/TXHppP8hWPYJNpy4uy90ky0z6d3QnV4gVtI3bosRCEd3yreJA.jpg" />
                 <div class="name" id="childName">duongcuti123</div>
-                <a class="settings" href="#" onclick="document.getElementById('editModal').style.display='block'">Chỉnh sửa cài đặt</a>
-                <a class="delete" href="#" onclick="deleteAccount(this)">Xóa</a>
+                <button class="settings" data-bs-toggle="modal" data-bs-target="#myModal">Chỉnh sửa cài đặt</button>
+                <button class="delete" href="#" onclick="deleteAccount(this)">Xóa</button>
             </div>
         </div>
+    </div>
 
-        <!-- QUẢNG CÁO -->
+    <!-- QUẢNG CÁO -->
+    <div class="container">
         <div class="ad-section">
             <img alt="Khan Academy Kids characters" src="https://storage.googleapis.com/a1aa/image/bd4ektKmOepQbk85f7obJNC9XwTYEZxly5na6Nwarztft8qPB.jpg" />
             <div class="ad-text">
@@ -414,42 +407,58 @@ session_start();
         </div>
     </div>
 
-    <div class="modal" id="myModal">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-            <h2>Thêm tài khoản con</h2>
-            <div class="form-group">
-                <label for="username">Rên</label>
-                <input id="username" name="username" type="text" />
-            </div>
-            <div class="form-group">
-                <label for="password">Mật khẩu</label>
-                <input id="password" name="password" type="password" />
-            </div>
-            <div class="form-group">
-                <label for="dob">Ngày tháng năm sinh</label>
-                <input id="dob" name="dob" type="date" />
-            </div>
-            <div class="form-group">
-                <button onclick="addAccount()" type="button">Đăng ký</button>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Thêm tài khoản con</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label">Tên con:</label>
+                        <input id="full_name" name="full_name" type="text" class="form-control" placeholder="Nhập tên con" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Ngày sinh:</label>
+                        <input id="dob" name="dob" type="date" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges()">Thêm</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="editModal">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('editModal').style.display='none'">&times;</span>
-            <h2>Chỉnh sửa cài đặt</h2>
-            <div class="form-group">
-                <label for="edit-username">Tên:</label>
-                <input id="edit-username" name="edit-username" type="text" value="duongcuti123" />
-            </div>
-            <div class="form-group">
-                <label for="edit-dob">Ngày tháng năm sinh</label>
-                <input id="edit-dob" name="edit-dob" type="date" />
-            </div>
-            <div class="form-group">
-                <button onclick="saveChanges()" type="button">Lưu thay đổi</button>
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Thêm tài khoản con</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label">Tên con:</label>
+                        <input id="full_name" name="full_name" type="text" class="form-control" placeholder="Nhập tên con" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Ngày sinh:</label>
+                        <input id="dob" name="dob" type="date" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges()">Thêm</button>
+                </div>
             </div>
         </div>
     </div>
@@ -621,6 +630,8 @@ session_start();
     </script>
 
     <script src="js/hello.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

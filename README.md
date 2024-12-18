@@ -9,27 +9,22 @@
 
 ### Tổng thể trang web:
 1. Tạo các trang
-- Về chúng tôi (about-us.php)
-- User profile
-- Trang học tập
-- Trang của học sinh (Theo dõi tiến độ học tập)
-- Trang của giáo viên (Theo dõi tiến độ học tập của học sinh, thêm bài tập)
-- Trang của phụ huynh (Theo dõi tiến độ học tập của con mình)
+- Trang của học sinh
+
 
 2. Cải thiện/ Sửa
 - Cải thiện drop down menu cho người dùng
 - Thống nhất css
 - Sửa thông báo lỗi cho login.php
 - Sửa avatar người dùng
-
-### index.php
-- Cải thiện giao diện của trang
+- Về chúng tôi (about-us.php)
+- User profile
 
 ### login.php
 - Tạo chức năng cho nút ghi nhớ tài khoản
 
 ### search.php
-- Cải thiện giao diện
+- Tìm kiếm theo môn học
 
-### csdl
-- Nhiều chức năng chưa nghĩ ra
+### Trang của giáo viên (thêm bài tập)
+- Để tên giáo viên, ngày đăng

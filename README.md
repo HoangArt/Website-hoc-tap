@@ -22,9 +22,6 @@
 - Sửa thông báo lỗi cho login.php
 - Sửa avatar người dùng
 
-### index.php
-- Cải thiện giao diện của trang
-
 ### login.php
 - Tạo chức năng cho nút ghi nhớ tài khoản
 

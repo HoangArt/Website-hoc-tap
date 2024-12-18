@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../db.php");
+include("http://localhost/OngNho/db.php");
 
 $error = "";
 

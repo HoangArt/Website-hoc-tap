@@ -116,7 +116,7 @@ if (isset($_SESSION['email'])) {
         </div>
 
         <div class="d-flex justify-content-center gap-3 mt-5">
-            <a href="javascript:history.back()"><button class="btn btn-secondary btn-custom text-decoration-none">Quay lại</button></a>
+            <a href="index.php"><button class="btn btn-secondary btn-custom text-decoration-none">Quay lại</button></a>
             <button class="btn btn-custom" style="background-color: #feca7a;" onclick="continueAction()">Tiếp
                 tục</button>
         </div>

@@ -1,6 +1,6 @@
 <?php
 // Kết nối cơ sở dữ liệu
-include("db.php");
+include("http://localhost/OngNho/db.php");
 
 // Truy vấn để lấy danh sách người dùng
 $sql = "SELECT u.id, u.full_name, u.date_of_birth, u.email, r.role_name FROM users u JOIN roles r ON u.role_id = r.id";

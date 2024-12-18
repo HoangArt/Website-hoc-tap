@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";  // Thay bằng tên máy chủ của bạn
-$username = "root";         // Tên người dùng MySQL
-$password = "";             // Mật khẩu MySQL
-$dbname = "user_registration"; // Tên cơ sở dữ liệu
+$servername = "localhost"; 
+$username = "root";
+$password = "";
+$dbname = "user_registration";
 
 // Kết nối tới cơ sở dữ liệu
 $conn = new mysqli($servername, $username, $password, $dbname);

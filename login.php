@@ -1,6 +1,5 @@
 <?php
 session_start();
-include("db.php");
 
 // Kiểm tra nếu người dùng đã đăng nhập chưa
 if (isset($_SESSION['email'])) {
@@ -19,75 +18,7 @@ if (isset($_SESSION['password_changed']) && $_SESSION['password_changed'] == tru
     unset($_SESSION['password_changed']); // Xóa session sau khi hiển thị
 }
 
-// Khởi tạo biến thông báo lỗi
-$error_message = "";
 
-// Kiểm tra xem form có được gửi không
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Lấy giá trị từ form đăng nhập
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $role = $_POST['role'] ?? '';
-
-    // Kiểm tra xem các trường có rỗng hay không
-    if (empty($email) || empty($password) || empty($role)) {
-        $error_message = "<p class='text-center text-danger'>Vui lòng nhập đầy đủ thông tin (vai trò, email và mật khẩu).</p>";
-    } else {
-        // Truy vấn cơ sở dữ liệu để xác thực thông tin đăng nhập
-        $sql = "SELECT u.user_id, u.full_name, u.password, u.date_of_birth, u.phone_number, r.role_name
-                FROM users u
-                JOIN roles r ON u.role_id = r.id
-                WHERE u.email = ? AND r.role_name = ?";
-
-        // Chuẩn bị câu lệnh SQL
-        if ($stmt = $conn->prepare($sql)) {
-            // Gán giá trị tham số vào câu lệnh SQL
-            $stmt->bind_param("ss", $email, $role);
-
-            // Thực thi câu lệnh
-            if ($stmt->execute()) {
-                $stmt->store_result();
-
-                // Nếu có người dùng khớp với thông tin
-                if ($stmt->num_rows == 1) {
-                    // Liên kết kết quả
-                    $stmt->bind_result($user_id, $full_name, $hashed_password, $date_of_birth, $phone_number, $role_name);
-                    $stmt->fetch();
-
-                    // Kiểm tra mật khẩu
-                    if (password_verify($password, $hashed_password)) {
-                        // Lưu thông tin người dùng vào session
-                        $_SESSION['user_id'] = $user_id;
-                        $_SESSION['email'] = $email;
-                        $_SESSION['full_name'] = $full_name;
-                        $_SESSION['date_of_birth'] = $date_of_birth;
-                        $_SESSION['phone_number'] = $phone_number;
-                        $_SESSION['role_name'] = $role_name;
-
-                        // Chuyển hướng đến trang chính
-                        header("Location: index.php");
-                        exit();
-                    } else {
-                        $error_message = "<p class='text-center text-danger'>Sai thông tin đăng nhập. Vui lòng nhập lại!</p>";
-                    }
-                } else {
-                    $error_message = "<p class='text-center text-danger'>Không tìm thấy người dùng với thông tin này trong hệ thống.</p>";
-                }
-            } else {
-                // Nếu câu lệnh không thực thi được
-                $error_message = "<p class='text-center text-danger'>Lỗi: " . $stmt->error . "</p>";
-            }
-
-            // Đóng kết nối
-            $stmt->close();
-        } else {
-            $error_message = "<p class='text-center text-danger'>Lỗi: Không thể chuẩn bị câu lệnh SQL.</p>";
-        }
-    }
-}
-
-// Đóng kết nối cơ sở dữ liệu
-$conn->close();
 
 // Kiểm tra nếu tham số 'register' trong URL có giá trị 'success'
 if (isset($_GET['register']) && $_GET['register'] == 'success') {
@@ -151,12 +82,19 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                                         <a href="index.php" style="text-decoration: none; color: #ffb700">&larr; Quay về trang chủ</a>
                                                     </div>
                                                     <h4 class="text-center">Đăng nhập tài khoản</h4>
+                                                    <?php if (isset($_SESSION['message'])): ?>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            <?php echo $_SESSION['message']; ?>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        </div>
+                                                        <?php unset($_SESSION['message']); ?>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- FORM ĐĂNG NHẬP -->
-                                        <form method="post" action="<?= $_SERVER["PHP_SELF"]; ?>">
+                                        <form method="post" action="sign-up/login-process.php">
                                             <div class="row gy-3 overflow-hidden">
                                                 <!-- CHỌN VAI TRÒ -->
                                                 <div class="form-floating mb-3">
@@ -267,8 +205,10 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
         });
     </script>
 
-    <script src="../js/password.js"></script>
+    <script src="js/password.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

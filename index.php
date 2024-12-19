@@ -6,8 +6,12 @@ if (isset($_SESSION['message'])) {
     echo "<script>
         alert('" . htmlspecialchars($_SESSION['message'], ENT_QUOTES) . "');
     </script>";
-    unset($_SESSION['message']); // Xóa thông báo sau khi hiển thị
+    unset($_SESSION['message']);
 }
+
+$user_avatar_url = isset($_SESSION['avatar']) 
+    ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
+    : "http://localhost/OngNho/img/avatar/default-avatar.png";
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +70,27 @@ if (isset($_SESSION['message'])) {
 
     <!-- KHÓA HỌC -->
     <section>
+        <?php
+        include('include/db2.php');
+
+        // Truy vấn để đếm số lượng bài học theo môn học
+        $sql = "SELECT subjects.name, COUNT(lessons.id) AS lesson_count
+                FROM subjects
+                LEFT JOIN lessons ON subjects.id = lessons.subject_id
+                GROUP BY subjects.id";
+
+        $result = $conn2->query($sql);
+
+        // Lưu kết quả vào một mảng
+        $subjectCounts = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $subjectCounts[$row['name']] = $row['lesson_count'];
+            }
+        }
+
+        $conn2->close();
+        ?>
         <div class="container" style="margin-top: 100px;">
             <div class="text-center mb-4">
                 <h1>Khám phá các môn học chúng mình dạy</h1>
@@ -79,7 +104,7 @@ if (isset($_SESSION['message'])) {
                             <i class="fa-solid fa-calculator" style="font-size: 3rem;"></i>
                         </div>
                         <h4>Toán học</h4>
-                        <p>X bài học</p>
+                        <p><?php echo isset($subjectCounts['Toán học']) ? $subjectCounts['Toán học'] : '0'; ?> bài học</p>
                     </div>
                 </div>
 
@@ -89,7 +114,7 @@ if (isset($_SESSION['message'])) {
                             <i class="fa-solid fa-book" style="font-size: 3rem;"></i>
                         </div>
                         <h4>Tiếng Việt</h4>
-                        <p>X bài học</p>
+                        <p><?php echo isset($subjectCounts['Tiếng Việt']) ? $subjectCounts['Tiếng Việt'] : '0'; ?> bài học</p>
                     </div>
                 </div>
 
@@ -99,7 +124,7 @@ if (isset($_SESSION['message'])) {
                             <i class="fa-solid fa-language" style="font-size: 3rem;"></i>
                         </div>
                         <h4>Tiếng Anh</h4>
-                        <p>X bài học</p>
+                        <p><?php echo isset($subjectCounts['Tiếng Anh']) ? $subjectCounts['Tiếng Anh'] : '0'; ?> bài học</p>
                     </div>
                 </div>
 
@@ -109,7 +134,7 @@ if (isset($_SESSION['message'])) {
                             <i class="fa-solid fa-flask" style="font-size: 3rem;"></i>
                         </div>
                         <h4>Khoa học</h4>
-                        <p>X bài học</p>
+                        <p><?php echo isset($subjectCounts['Khoa học tự nhiên']) ? $subjectCounts['Khoa học tự nhiên'] : '0'; ?> bài học</p>
                     </div>
                 </div>
             </div>
@@ -122,7 +147,7 @@ if (isset($_SESSION['message'])) {
                             <i class="fa-solid fa-people-arrows" style="font-size: 3rem;"></i>
                         </div>
                         <h4>Xã hội</h4>
-                        <p>X bài học</p>
+                        <p><?php echo isset($subjectCounts['Khoa học xã hội']) ? $subjectCounts['Khoa học xã hội'] : '0'; ?> bài học</p>
                     </div>
                 </div>
 
@@ -132,7 +157,7 @@ if (isset($_SESSION['message'])) {
                             <i class="fa-solid fa-palette" style="font-size: 3rem;"></i>
                         </div>
                         <h4>Năng khiếu</h4>
-                        <p>X bài học</p>
+                        <p><?php echo isset($subjectCounts['Môn năng khiếu']) ? $subjectCounts['Môn năng khiếu'] : '0'; ?> bài học</p>
                     </div>
                 </div>
 
@@ -222,48 +247,6 @@ if (isset($_SESSION['message'])) {
                         </p>
 
                         <a class="btn py-3 px-5 mt-2 align-self-start" style="background-color: #feca73;" href="sign-up/student.php">Bắt đầu quản lý lớp học tại đây</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PHỤ HUYNH -->
-        <div class="container-xxl py-5" style="margin-top: 100px">
-            <div class="container">
-                <div class="row g-5">
-                    <!-- CHỮ -->
-                    <div class="col-lg-6">
-                        <h6 class="section-title text-start pe-3" style="color: #ffb700;">Phụ huynh</h6>
-                        <h1 class="mb-4">
-                            Dễ dàng quản lý quá trình họp của con em mình</h1>
-                        <p class="mb-4">
-                            Ong Nhỏ bọn cháu cung cấp một loạt các công cụ tiên tiến,
-                            giúp giáo viên phát huy tối đa khả năng giảng dạy và nâng cao hiệu quả công tác giảng dạy của mình.
-                            Chúng tôi không chỉ tập trung vào việc hỗ trợ học sinh, mà còn cam kết tạo ra những công cụ mạnh mẽ giúp giáo viên truyền đạt kiến thức một cách hiệu quả nhất.
-                        </p>
-
-                        <div class="row gy-2 gx-4 mb-4">
-                            <div class="col-sm-6">
-                                <p class="mb-0 fw-semibold"><i class="fa fa-arrow-right me-2" style="color: #ffb700;"></i>Quản lý khóa học</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p class="mb-0 fw-semibold"><i class="fa fa-arrow-right me-2" style="color: #ffb700;"></i>Tạo bài kiểm tra và đánh giá</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p class="mb-0 fw-semibold"><i class="fa fa-arrow-right me-2" style="color: #ffb700;"></i>Tương tác với học sinh</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p class="mb-0 fw-semibold"><i class="fa fa-arrow-right me-2" style="color: #ffb700;"></i>Cộng tác với các giáo viên khác</p>
-                            </div>
-                        </div>
-                        <a class="btn py-3 px-5 mt-2" style="background-color: #feca73;" href="sign-up/parent.php">Bắt đầu quản lý tại đây</a>
-                    </div>
-
-                    <!-- HÌNH ẢNH -->
-                    <div class="col-lg-6" style="min-height: 400px;">
-                        <div class="position-relative h-100">
-                            <img class="img-fluid position-absolute w-100 h-100" src="img/index/parent.jpg" alt="" style="object-fit: cover;">
-                        </div>
                     </div>
                 </div>
             </div>

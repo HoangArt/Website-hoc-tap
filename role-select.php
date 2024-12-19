@@ -84,8 +84,9 @@ if (isset($_SESSION['email'])) {
         <h5 class="" style="color: #ffb700">Đăng ký tài khoản</h5>
         <h1 class="mb-5">Lựa chọn vai trò để tiếp tục</h1>
         <div class="row justify-content-between align-items-center mb-4">
-            <!-- Admin Card -->
-            <div class="col-4">
+
+            <!-- HỌC SINH -->
+            <div class="col-6">
                 <div class="role-card p-4 text-center" onclick="selectRole(this)" data-role="student">
                     <div class="mb-3">
                         <i class="fa-solid fa-graduation-cap" style="font-size: 2rem; color: #feca7a;"></i>
@@ -95,7 +96,7 @@ if (isset($_SESSION['email'])) {
             </div>
 
             <!-- GIÁO VIÊN -->
-            <div class="col-4">
+            <div class="col-6">
                 <div class="role-card p-4 text-center" onclick="selectRole(this)" data-role="teacher">
                     <div class="mb-3">
                         <i class="fa-solid fa-person-chalkboard" style="font-size: 2rem; color: #feca7a;"></i>
@@ -105,14 +106,14 @@ if (isset($_SESSION['email'])) {
             </div>
 
             <!-- PHỤ HUYNH -->
-            <div class="col-4">
+            <!-- <div class="col-4">
                 <div class="role-card p-4 text-center" onclick="selectRole(this)" data-role="parent">
                     <div class="mb-3">
                         <i class="fa-solid fa-person-breastfeeding" style="font-size: 2rem; color: #feca7a;"></i>
                     </div>
                     <h5>Phụ huynh</h5>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="d-flex justify-content-center gap-3 mt-5">

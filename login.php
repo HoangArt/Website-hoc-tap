@@ -18,8 +18,6 @@ if (isset($_SESSION['password_changed']) && $_SESSION['password_changed'] == tru
     unset($_SESSION['password_changed']); // Xóa session sau khi hiển thị
 }
 
-
-
 // Kiểm tra nếu tham số 'register' trong URL có giá trị 'success'
 if (isset($_GET['register']) && $_GET['register'] == 'success') {
     echo "<p class='text-center text-warning'>Cảnh báo: Bạn đã đăng ký thành công! Hãy đăng nhập ngay bây giờ.</p>";
@@ -33,11 +31,11 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập tài khoản | Ong Nhỏ</title>
+    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="css/styles.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
     <style>
         .form-floating .form-select {
             height: calc(2.5em + 0.75rem);
@@ -103,7 +101,7 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                                         <option value="" selected disabled>Chọn vai trò</option>
                                                         <option value="student">Học sinh/ Người học</option>
                                                         <option value="teacher">Giáo viên</option>
-                                                        <option value="parent">Phụ huynh</option>
+                                                        <!-- <option value="parent">Phụ huynh</option> -->
                                                     </select>
 
                                                 </div>
@@ -130,17 +128,7 @@ if (isset($_GET['register']) && $_GET['register'] == 'success') {
                                                         </button>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            name="remember_me" id="remember_me">
-                                                        <label class="form-check-label text-secondary"
-                                                            for="remember_me">Ghi nhớ tài khoản
-                                                        </label>
-                                                    </div>
-                                                </div>
-
+                                            
                                                 <div class="col-12">
                                                     <div class="d-grid">
                                                         <button class="btn btn-lg text-white"

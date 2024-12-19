@@ -1,16 +1,17 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo lại mật khẩu mới | Herculis</title>
+    <title>Tạo mật khẩu mới | Ong Nhỏ</title>
+    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="img/"> <!-- Tạo icon -->
     <style>
         .divider:after,
         .divider:before {
@@ -48,6 +49,10 @@ session_start();
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-5">
+                                        <div class="mb-4">
+                                            <a href="index.php" style="text-decoration: none; color: #ffb700">&larr; Quay về trang chủ</a>
+                                        </div>
+
                                         <!-- THÔNG BÁO LỖI -->
                                         <?php if (isset($_SESSION['message'])): ?>
                                             <div class="alert alert-danger alert-dismissible fade show" role="alert">

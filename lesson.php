@@ -18,8 +18,12 @@ if (isset($_GET['link'])) {
 }
 
 $file_path = htmlspecialchars($lesson['file_path']);
-$document_root = $_SERVER['DOCUMENT_ROOT']; 
+$document_root = $_SERVER['DOCUMENT_ROOT'];
 $file_url = "http://localhost/" . substr($file_path, strlen($document_root));
+
+$user_avatar_url = isset($_SESSION['avatar']) 
+    ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
+    : "default-avatar.png";
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +33,7 @@ $file_url = "http://localhost/" . substr($file_path, strlen($document_root));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
-    <title><?= htmlspecialchars($lesson['tittle']); ?> | Ong Nhỏ</title>
+    <title><?= htmlspecialchars($lesson['title']); ?> | Ong Nhỏ</title>
     <link href="http://localhost/OngNho/css/styles.css" rel="stylesheet">
     <link href="http://localhost/OngNho/css/index.css " rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -53,7 +57,6 @@ $file_url = "http://localhost/" . substr($file_path, strlen($document_root));
         }
 
         .lesson-description {
-            margin-top: 10px;
             color: #555;
         }
 
@@ -63,7 +66,7 @@ $file_url = "http://localhost/" . substr($file_path, strlen($document_root));
 
         iframe {
             width: 100%;
-            height: 500px;
+            height: 1000px;
             border: none;
         }
 
@@ -82,10 +85,21 @@ $file_url = "http://localhost/" . substr($file_path, strlen($document_root));
     <!-- NỘI DUNG -->
     <div class="container" style="padding-top: 200px; padding-bottom: 200px;">
         <div class="lesson-container">
-            <a href="search.php">Quay lại</a>
+            <a href="search.php">
+                <p class="hero-badge py-1 px-3 mb-3 text-white d-inline-block shadow text-uppercase rounded-pill"
+                    style="background-color: #ffb700;">
+                    &larr; Quay lại
+                </p>
+            </a>
             <?php if ($lesson): ?>
-                <h1 class="lesson-title"><?= htmlspecialchars($lesson['tittle']) ?></h1>
-                <p class="lesson-description"><?= nl2br(htmlspecialchars($lesson['description'])) ?></p>
+                <div>
+                    <h1 class="lesson-title"><?= htmlspecialchars($lesson['title']) ?></h1>
+                    <p class="lesson-description"><?= nl2br(htmlspecialchars($lesson['description'])) ?></p>
+                    
+                    <p>
+                        Thời gian tạo: <?= htmlspecialchars($lesson['created_at']) ?>
+                    </p>
+                </div>
 
                 <div class="viewer">
                     <?php
@@ -95,7 +109,7 @@ $file_url = "http://localhost/" . substr($file_path, strlen($document_root));
                     if ($file_extension === 'pdf'): ?>
                         <!-- PDF Viewer -->
                         <iframe src="<?= $file_url; ?>" width="100%" height="1000px" allowfullscreen></iframe>
-                    
+
                     <?php elseif (in_array($file_extension, ['jpg', 'jpeg', 'png', 'gif'])): ?>
                         <!-- Image Viewer -->
                         <div class="image-viewer">

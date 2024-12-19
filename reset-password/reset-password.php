@@ -4,7 +4,7 @@ $token = $_GET["token"];
 $token_hash = hash("sha256", $token);
 
 // Kết nối database
-$conn = require __DIR__ . "/../db.php";
+$conn = require __DIR__ . "/../include/db.php";
 
 // Lấy thông tin người dùng dựa trên token
 $sql = "SELECT * FROM users WHERE reset_token_hash = ?";
@@ -31,10 +31,10 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo mật khẩu mới | Herculis</title>
+    <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
+    <title>Tạo mật khẩu mới | Ong Nhỏ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="img/"> <!-- Tạo icon -->
 </head>
 
 <body>

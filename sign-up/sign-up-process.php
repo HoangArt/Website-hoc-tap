@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../db.php");
+include("../include/db.php");
 require "../sendmails.php";
 
 // Kiểm tra nếu người dùng đã đăng nhập chưa

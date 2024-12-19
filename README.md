@@ -8,23 +8,8 @@
 ## Việc cần làm:
 
 ### Tổng thể trang web:
-1. Tạo các trang
-- Trang của học sinh
-
-
-2. Cải thiện/ Sửa
-- Cải thiện drop down menu cho người dùng
+#### Cải thiện/ Sửa
 - Thống nhất css
-- Sửa thông báo lỗi cho login.php
-- Sửa avatar người dùng
-- Về chúng tôi (about-us.php)
-- User profile
-
-### login.php
-- Tạo chức năng cho nút ghi nhớ tài khoản
-
-### search.php
-- Tìm kiếm theo môn học
 
 ### Trang của giáo viên (thêm bài tập)
-- Để tên giáo viên, ngày đăng
+- Để tên giáo viên

@@ -1,6 +1,16 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+
+if ($_SESSION['role_id'] = 1) {
+    header("Location: ../index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -39,9 +49,9 @@ session_start();
                                                     do trang web này hoạt động bằng những bài giảng, kiến thức của giáo viên khắp nơi.<br>
                                                     Do tính chất quan trọng đó, sau đây là một số nguyên tắc khi đăng bài bài tập:<br>
                                                     - Đảm bảo nội dung chính xác nhất có thể:
-                                                    <span class="fs-6">Ong Nhỏ chúng em luôn luôn tự hào là một trong những dịch vụ dạy học
-                                                        hàng đầu Việt Nam với đội ngũ giáo viên chất lượng và uy tín cùng nội dung phong phú sinh động. Do đó, bọn em
-                                                        mong muốn rằng nội dung trên Ong Nhỏ là luôn được cập nhật và chuẩn xác nhất có thể.</span><br>
+                                                    Ong Nhỏ chúng em luôn luôn tự hào là một trong những dịch vụ dạy học
+                                                    hàng đầu Việt Nam với đội ngũ giáo viên chất lượng và uy tín cùng nội dung phong phú sinh động. Do đó, bọn em
+                                                    mong muốn rằng nội dung trên Ong Nhỏ là luôn được cập nhật và chuẩn xác nhất có thể.</span><br>
 
                                                     - Không sao chép nội dung từ nơi khác: Nội dung bài học trên Ong Nhỏ là độc quyền nhằm đem đến trai nghiệm thú vị và
                                                     hấp dẫn cho những bạn học.<br>
@@ -63,6 +73,15 @@ session_start();
                                         <div class="col-12">
                                             <form method="post" action="upload_lesson.php" enctype="multipart/form-data">
                                                 <div class="row gy-3 p-4 p-xl-5">
+                                                    <div class="mb-4">
+                                                        <a href="../index.php">
+                                                            <span class="hero-badge py-1 px-3 mb-3 text-white d-inline-block shadow text-uppercase rounded-pill"
+                                                                style="background-color: #ffb700;">
+                                                                &larr; Quay về trang chủ
+                                                            </span>
+                                                        </a>
+                                                    </div>
+
                                                     <!-- TẢI FILE -->
                                                     <div class="col-12">
                                                         <label for="file" class="form-label">Tải bài tập <span class="text-danger">*</span></label>

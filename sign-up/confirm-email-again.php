@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../db.php");
+include("../include/db.php");
 require "../sendmails.php";
 
 // Tạo confirm_email_token mới và gửi cho người dùng

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../db.php");
+include("../include/db.php");
 
 if (isset($_GET['token'])) {
     $confirm_email_token = $_GET['token'];

@@ -26,7 +26,9 @@ if ($is_verified === 0) {
     }
 }
 
-$user_avatar_url = isset($_SESSION['avatar']) ? "../uploads/avatars/" . $_SESSION['avatar'] : "../img/avatar/default-avatar.png";
+$user_avatar_url = isset($_SESSION['avatar'])
+    ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar']
+    : "http://localhost/OngNho/img/avatar/default-avatar.png";
 
 $conn->close();
 ?>
@@ -220,7 +222,6 @@ $conn->close();
             border: none;
             color: white;
             padding: 12px 24px;
-            /* Điều chỉnh để nút vừa chữ */
             border-radius: var(--border-radius);
             transition: all var(--transition-speed) ease;
         }
@@ -298,11 +299,6 @@ $conn->close();
                                 <i class="fa-solid fa-lock fa-2x"></i> <span class="ms-1 d-none d-sm-inline">Mật khẩu</span></a>
                         </li>
 
-                        <!-- BẢO MẬT -->
-                        <li>
-                            <a href="#account-security" data-bs-toggle="tab" class="nav-link px-0 align-middle">
-                                <i class="fa-solid fa-shield-halved fa-2x"></i> <span class="ms-1 d-none d-sm-inline">Bảo mật</span> </a>
-                        </li>
                     </ul>
                     <hr>
                 </div>
@@ -338,25 +334,20 @@ $conn->close();
                             <div class="card-body d-flex flex-column flex-sm-row align-items-center">
                                 <img src="<?= htmlspecialchars($user_avatar_url); ?>" alt="Avatar" class="ui-w-80 img-fluid mb-3 mb-sm-0">
                                 <div class="ms-sm-4">
-                                    <form action="change_user_information/update_profile.php" method="post" enctype="multipart/form-data">
+                                    <form action="change_user_information/avatar.php" method="post" enctype="multipart/form-data">
                                         <label class="btn btn-outline-primary">
                                             Tải hình ảnh mới
                                             <input type="file" name="avatar" class="account-settings-fileinput" accept="image/jpg, image/jpeg, image/png, image/gif">
                                         </label>
-                                        <button type="submit" class="btn btn-primary">Cập nhật ảnh</button>
+                                        <button type="submit" name="action" value="update" class="btn btn-primary">Cập nhật ảnh</button>
+                                        <?php if (htmlspecialchars($user_avatar_url) != "http://localhost/OngNho/img/avatar/users/default-avatar.png"): ?>
+                                            <button type="submit" name="action" value="delete" class="btn btn-secondary">Chọn ảnh mặc định</button>
+                                        <?php endif; ?>
                                     </form>
-                                    <button type="button" class="btn btn-default" onclick="resetAvatar()">Reset</button>
                                     <div class="text-muted small mt-1">Cho phép định dạng JPG, GIF, hoặc PNG. Max size of 800KB.</div>
                                 </div>
                             </div>
 
-                            <script>
-                                // Hàm reset avatar (nếu cần)
-                                function resetAvatar() {
-                                    // Cài đặt lại hình ảnh mặc định hoặc yêu cầu người dùng tải lại hình ảnh gốc
-                                    // Bạn có thể sử dụng logic này để hiển thị ảnh mặc định hoặc gửi yêu cầu đến server
-                                }
-                            </script>
 
                             <hr>
 
@@ -464,9 +455,15 @@ $conn->close();
                                                 <a href="change_user_information/email.php" class="btn-update">Cập nhật</a>
                                             </div>
                                         <?php endif; ?>
-
-
                                     </div>
+
+                                    <!-- XÓA TÀI KHOẢN -->
+                                    <div class="row align-items-center">
+                                        <div class="col-6">
+                                            <a href="change_user_information/delete.php" type="button" class="btn btn-danger">Xóa tài khoản</a>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -493,58 +490,16 @@ $conn->close();
                                 <?php endif; ?>
                                 <h2>Thay đổi mật khẩu</h2>
                             </div>
-
-                            <form method="post" action="change_user_information/change_password.php">
-                                <div class="mb-3">
-                                    <label class="form-label">Mật khẩu hiện tại</label>
-                                    <input type="password" class="form-control"
-                                        <?= ($is_verified == 0) ? 'readonly' : ''; ?>
-                                        style="background-color: <?= ($is_verified == 0) ? '#f0f0f0' : 'white'; ?>"
-                                        value="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Mật khẩu mới</label>
-                                    <input type="password" class="form-control"
-                                        <?= ($is_verified == 0) ? 'readonly' : ''; ?>
-                                        style="background-color: <?= ($is_verified == 0) ? '#f0f0f0' : 'white'; ?>"
-                                        value="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Nhập lại mật khẩu mới</label>
-                                    <input type="password" class="form-control"
-                                        <?= ($is_verified == 0) ? 'readonly' : ''; ?>
-                                        style="background-color: <?= ($is_verified == 0) ? '#f0f0f0' : 'white'; ?>"
-                                        value="">
-                                </div>
-
                                 <?php if ($is_verified === 0): ?>
+                                    <p class="text-danger">
+                                        Vui lòng xác nhận tài khoản để thay đổi mật khẩu.</a>
+                                    </p>
                                 <?php else: ?>
                                     <p class="text-danger">
                                         Nếu bạn quên mật khẩu của mình, vui lòng nhấn <a href="forgot-password.php">vào đây</a>
                                     </p>
                                 <?php endif; ?>
-                                <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                            </form>
-                        </div>
-                    </div>
 
-                    <!-- BẢO MẬT -->
-                    <div class="tab-pane fade" id="account-security">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label class="form-label">Facebook</label>
-                                <input type="text" class="form-control" value="https://facebook.com/username">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Twitter</label>
-                                <input type="text" class="form-control" value="https://twitter.com/username">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">LinkedIn</label>
-                                <input type="text" class="form-control" value="https://linkedin.com/in/username">
-                            </div>
                         </div>
                     </div>
 

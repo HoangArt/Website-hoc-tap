@@ -11,9 +11,9 @@
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <?php if ($_SESSION['role_name'] == "teacher"): ?>
                         <li class="nav-item">
-                            <a href="http://localhost/OngNho/teacher.php" class="nav-link text-dark d-flex flex-column align-items-center">
+                            <a href="http://localhost/OngNho/teacher/upload.php" class="nav-link text-dark d-flex flex-column align-items-center">
                                 <i class="fa-solid fa-chalkboard-user fa-3x mb-2"></i>
-                                <span>Dạy học</span>
+                                <span>Tải bài tập</span>
                             </a>
                         </li>
                     <?php elseif ($_SESSION['role_name'] == "parent"): ?>
@@ -45,7 +45,7 @@
                 <!-- LIÊN LẠC -->
                 <li class="nav-item">
                     <a href="http://localhost/OngNho/contact-us.php" class="nav-link text-dark d-flex flex-column align-items-center">
-                        <i class="fa-regular fa-address-book fa-3x mb-2"></i>
+                        <i class="fa-regular fa-address-book fa-3x mb-2 yo"></i>
                         <span>Liên lạc</span>
                     </a>
                 </li>
@@ -55,19 +55,18 @@
             <div class="position-relative">
                 <?php if (isset($_SESSION['email'])): ?>
                     <!-- User Avatar -->
-                    <img src="http://localhost/OngNho/img/avatar/default-avatar.png" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
+                    <img src="<?= htmlspecialchars($user_avatar_url); ?>" class="user-pic" id="userPic" alt="User Avatar" aria-label="User Menu">
 
                     <!-- Menu Dropdown -->
                     <div class="sub-menu-wrap" id="subMenu" aria-hidden="true">
                         <div class="sub-menu">
                             <!-- THÔNG TIN USER -->
                             <div class="user-info">
-                                <img src="http://localhost/OngNho/img/user.png" alt="User Avatar">
+                                <img src="<?= htmlspecialchars($user_avatar_url); ?>" alt="User Avatar">
                                 <h4><?= htmlspecialchars($_SESSION['full_name']); ?></h4>
                             </div>
 
                             <ul>
-                                <li><a href="#"><i class="fa-solid fa-user"></i> Hồ sơ</a></li>
                                 <li><a href="http://localhost/OngNho/user_settings.php"><i class="fa-solid fa-cog"></i> Cài đặt tài khoản</a></li>
                                 <li><a href="http://localhost/OngNho/logout.php"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</a></li>
                             </ul>

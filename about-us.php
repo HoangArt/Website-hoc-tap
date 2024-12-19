@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+$user_avatar_url = isset($_SESSION['avatar']) 
+    ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
+    : "http://localhost/OngNho/img/avatar/default-avatar.png";
 ?>
 
 <!DOCTYPE html>
@@ -11,18 +15,196 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="http://localhost/OngNho/css/styles.css" rel="stylesheet">
-    <link href="http://localhost/OngNho/css/about-us.css " rel="stylesheet">
+    <link href="/css/about-us.css " rel="stylesheet">
 
     <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.css">
     <link rel="icon" type="image/x-icon" href="img/logo/Ongnho-icon.png">
     <title>Về chúng mình | Ong nhỏ</title>
+    <style>
+        .about-us-link {
+            padding: 15px 114px;
+            background-color: #FFF9EC;
+            border-bottom: 2px solid #333;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .about-us-link nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .about__breadcrumb {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .about__breadcrumb li {
+            display: inline;
+        }
+
+        .about__breadcrumb a {
+            text-decoration: none;
+            color: #feca73;
+            transition: color 0.3s;
+        }
+
+        .about__breadcrumb a:hover {
+            color: black;
+        }
+
+        :root {
+            --primary-color: #FFC107;
+            --secondary-color: #6c757d;
+            --background-color: #FFF9EC;
+            --text-color: #333;
+            --hover-color: #FFD54F;
+            --accent-color: #FF5722;
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .about-us-link {
+            background-color: #FFF3E0;
+            padding: 18px 0;
+            border-radius: 10px;
+        }
+
+
+
+        .about__breadcrumb li {
+            margin-right: 15px;
+        }
+
+        .about__breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .about__breadcrumb a:hover {
+            color: var(--hover-color);
+            transform: translateX(5px);
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+
+        .achivements {
+            background-color: #FFEBEE;
+            padding: 30px 0;
+        }
+
+        .sub-heading {
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .card-wrapper {
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .card-wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-wrapper i {
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .card-wrapper:hover i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .img-fluid {
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .img-fluid:hover {
+            transform: scale(1.07);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        @media (max-width: 768px) {
+            .display-5 {
+                font-size: 2.7rem;
+            }
+
+            .lead {
+                font-size: 1.1rem;
+            }
+
+            .card-wrapper {
+                margin-bottom: 25px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wow {
+            animation: fadeInUp 1s;
+        }
+
+        .button-hover:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
 
 <body style="background-color: #FFF9EC">
     <!-- HEADER -->
     <?php include('include/header.php'); ?>
 
-    <div class="about-us-link">
+    <div class="about-us-link" style="margin-top:140px;">
         <div class="container d-flex align-items-center">
             <nav aria-label="breadcrumb">
                 <ul class="uk-breadcrumb about__breadcrumb">
@@ -45,13 +227,15 @@ session_start();
             <div class="row g-5">
                 <!-- Chữ bên trái -->
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <h3 class="section-title text-start text-primary pe-3">Lời nói đầu</h3>
+                    <h3 class="section-title text-start text-dark pe-3">Lời nói đầu</h3>
                     <h2 class="mb-4">Kính gửi phụ huynh, giáo viên và học sinh</h2>
                     <p class="lead">
-
+                        Chúng tôi tin rằng mỗi đứa trẻ đều là một tài năng tiềm ẩn, chờ được khơi gợi và phát triển.
+                        Tại Ong Nhỏ, chúng tôi không chỉ là một nơi học thuật, mà còn là một môi trường nuôi dưỡng đam mê.
                     </p>
                     <p class="lead mb-0">
-
+                        Với sứ mệnh khơi dậy tinh thần học hỏi và sáng tạo, chúng tôi cam kết cung cấp một trải nghiệm giáo dục
+                        toàn diện, giúp các em phát triển không chỉ về kiến thức mà còn về kỹ năng sống và tư duy phản biện.
                     </p>
 
 
@@ -102,7 +286,8 @@ session_start();
             </div>
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0">
+                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0"
+                        style="height: 340px;">
                         <div class="d-flex align-items-center justify-content-center">
                             <i class="fa-regular fa-face-smile"
                                 style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
@@ -116,21 +301,23 @@ session_start();
                 </div>
 
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0">
+                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0"
+                        style="height: 340px;">
                         <div class="d-flex align-items-center justify-content-center">
                             <i class="fa-regular fa-face-smile"
                                 style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
                         </div>
 
-                        <h5 class="fs-4 fw-semibold mb-2">1 triệu</h5>
+                        <h5 class="fs-4 fw-file mb-2">10 triệu</h5>
                         <p class="text-muted mx-3 mx-lg-2 mx-xl-4">
-                            Học sinh và người học đang theo học tại Ong Nhỏ
+                            Bài tập được đăng trên ong nhỏ
                         </p>
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0">
+                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0"
+                        style="height: 340px;">
                         <div class="d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-user-graduate"
                                 style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
@@ -138,13 +325,14 @@ session_start();
 
                         <h5 class="fs-4 fw-semibold mb-2">99,99%</h5>
                         <p class="text-muted mx-3 mx-lg-2 mx-xl-4">
-                        Bạn nhỏ đỗ vào các trường trung học cơ sở khi theo học tại Ong Nhỏ
+                            Bạn nhỏ đỗ vào các trường trung học cơ sở khi theo học tại Ong Nhỏ
                         </p>
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0">
+                    <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0"
+                        style="height: 340px;">
                         <div class="d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-award"
                                 style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
@@ -159,15 +347,15 @@ session_start();
 
             </div>
 
-            <p>
-                * Số liệu được lấy từ trong trí tưởng tượng của Ong Nhỏ. 
+            <p style="margin-top: 10px;">
+                * Số liệu được lấy từ trong trí tưởng tượng của Ong Nhỏ.
                 Trí tưởng tượng quả là một điều tuyệt vời phải không?
                 Nó biến điều không tưởng thành hiện thực, biến giấc mơ thành
                 thực tế
             </p>
         </div>
 
-        
+
     </section>
 
     <!-- FOOTER -->

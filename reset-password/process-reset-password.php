@@ -6,7 +6,7 @@ $token = $_POST["token"];
 $token_hash = hash("sha256", $token);
 
 // Kết nối database
-$conn = require __DIR__ . "/../db.php";
+$conn = require __DIR__ . "../include/db.php";
 
 // Lấy thông tin người dùng dựa trên token
 $sql = "SELECT * FROM users WHERE reset_token_hash = ?";
@@ -34,7 +34,7 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 $new_password = $_POST["password"];
 $confirm_password = $_POST["confirm_password"];
 
-// Kiểm tra mật khẩu mới có trùng mật khẩu cũ không (dùng thông tin mật khẩu cũ trong DB)
+// Kiểm tra mật khẩu mới có trùng mật khẩu cũ không (dùng thông tin mật khẩu cũ trong data base)
 if (password_verify($new_password, $user['password'])) {
     $_SESSION['message'] = "Mật khẩu mới không được trùng mật khẩu cũ.";
     header("Location: reset-password.php?token=$token");

@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+$user_avatar_url = isset($_SESSION['avatar']) 
+    ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
+    : "http://localhost/OngNho/img/avatar/default-avatar.png";
 ?>
 
 <!DOCTYPE html>

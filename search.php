@@ -13,19 +13,11 @@ $subjectImages = [
     6 => 'img/lesson-img/art.png'
 ];
 
-$subjectImage = isset($subjectImages[$lesson['subject_id']]) ? $subjectImages[$lesson['subject_id']] : 'https://placehold.co/100x100';
-
-
 // Số kết quả mỗi trang
 $resultsPerPage = 10;
-
-// Lấy số trang hiện tại từ URL (nếu có), nếu không, mặc định là trang 1
 $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-if ($currentPage <= 0) {
-    $currentPage = 1;
-}
+if ($currentPage <= 0) $currentPage = 1;
 
-// Tính toán OFFSET (vị trí bắt đầu của kết quả trên trang hiện tại)
 $offset = ($currentPage - 1) * $resultsPerPage;
 
 $filteredLessons = [];
@@ -33,18 +25,14 @@ $whereClause = '';
 
 // Lọc theo từ khóa tìm kiếm
 if (isset($_GET['search']) && !empty($_GET['search'])) {
-    $searchQuery = $_GET['search'];
-    $searchQuery = htmlspecialchars($searchQuery);
-    $searchQuery = mysqli_real_escape_string($conn2, $searchQuery);
-    $whereClause = " AND (tittle LIKE '%$searchQuery%' OR description LIKE '%$searchQuery%')";
+    $searchQuery = htmlspecialchars(mysqli_real_escape_string($conn2, $_GET['search']));
+    $whereClause .= " AND (title LIKE '%$searchQuery%' OR description LIKE '%$searchQuery%')";
 }
 
-// Kiểm tra nếu người dùng chọn môn học để lọc
+// Lọc theo môn học
 if (isset($_GET['subjects']) && !empty($_GET['subjects'])) {
-    $selectedSubjects = $_GET['subjects'];  // Mảng các môn học đã chọn
-    $subjectIds = implode(",", array_map('intval', $selectedSubjects));  // Chuyển mảng thành chuỗi số để sử dụng trong SQL
-
-    // Thêm điều kiện lọc môn học vào câu truy vấn SQL
+    $selectedSubjects = array_map('intval', explode(',', $_GET['subjects']));
+    $subjectIds = implode(",", $selectedSubjects);
     $whereClause .= " AND subject_id IN ($subjectIds)";
 }
 
@@ -52,21 +40,31 @@ if (isset($_GET['subjects']) && !empty($_GET['subjects'])) {
 $sql = "SELECT * FROM lessons WHERE 1 $whereClause LIMIT $offset, $resultsPerPage";
 $result = $conn2->query($sql);
 
-// Kiểm tra kết quả truy vấn
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+        $row['image'] = isset($subjectImages[$row['subject_id']]) ? $subjectImages[$row['subject_id']] : 'https://placehold.co/100x100';
         $filteredLessons[] = $row;
     }
-} else {
-    $filteredLessons = [];
 }
 
-// Tính toán tổng số trang
+// Tính tổng số trang
 $sqlCount = "SELECT COUNT(*) AS total FROM lessons WHERE 1 $whereClause";
-$countResult = $conn2->query($sqlCount);
-$totalRows = $countResult->fetch_assoc()['total'];
+$totalRows = $conn2->query($sqlCount)->fetch_assoc()['total'];
 $totalPages = ceil($totalRows / $resultsPerPage);
 
+if (isset($_GET['ajax']) && $_GET['ajax'] == 'true') {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'lessons' => $filteredLessons,
+        'totalPages' => $totalPages,
+        'currentPage' => $currentPage
+    ]);
+    exit;
+}
+$user_avatar_url = isset($_SESSION['avatar']) 
+    ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
+    : "http://localhost/OngNho/img/avatar/default-avatar.png";
+    
 $conn->close();
 $conn2->close();
 ?>
@@ -91,7 +89,7 @@ $conn2->close();
     <?php include('include/header.php'); ?>
 
     <!-- Ô TÌM KIẾM -->
-    <div class="container" style="padding-top: 100px;">
+    <div class="container" style="padding-top: 200px;">
         <div class="row height d-flex justify-content-center ">
             <div class="col-md-8">
                 <form class="search d-flex" id="searchbox" method="get" action="search.php">
@@ -120,29 +118,22 @@ $conn2->close();
                                 <!-- LỌC THEO MÔN -->
                                 <div>
                                     <h5>Theo môn học:</h5>
+                                    <form id="filterForm">
+                                        <div class="list-group">
+                                            <?php
+                                            include("include/db2.php");
+                                            $subjectsQuery = "SELECT * FROM subjects";
+                                            $subjectsResult = $conn2->query($subjectsQuery);
 
-                                    <div class="list-group">
-                                        <?php
-                                        include("include/db2.php");
-                                        // Truy vấn danh sách môn học từ cơ sở dữ liệu
-                                        $subjectsQuery = "SELECT * FROM subjects";
-                                        $subjectsResult = $conn2->query($subjectsQuery);
-
-                                        // Hiển thị checkbox cho mỗi môn học
-                                        while ($subject = $subjectsResult->fetch_assoc()) {
-                                            echo '<label class="list-group-item">';
-                                            echo '<input class="form-check-input me-1" type="checkbox" name="subjects[]" value="' . $subject['id'] . '"';
-
-                                            // Nếu môn học đã được chọn, đánh dấu checkbox là checked
-                                            if (isset($selectedSubjects) && in_array($subject['id'], $selectedSubjects)) {
-                                                echo ' checked';
+                                            while ($subject = $subjectsResult->fetch_assoc()) {
+                                                echo '<label class="list-group-item">';
+                                                echo '<input class="form-check-input me-1" type="checkbox" name="subjects[]" value="' . $subject['id'] . '">';
+                                                echo htmlspecialchars($subject['name']);
+                                                echo '</label>';
                                             }
-
-                                            echo '> ' . htmlspecialchars($subject['name']) . '</label>';
-                                        }
-                                        $conn2->close();
-                                        ?>
-                                    </div>
+                                            ?>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -179,16 +170,25 @@ $conn2->close();
                                                     <tr>
                                                         <td class="number text-center"><?= $index + 1; ?></td>
 
-                                                        <td class="image"><img src="<?= $subjectImage; ?>" alt=""></td>
+                                                        <td class="lesson-image"><img src="<?= $subjectImage; ?>" alt=""></td>
 
                                                         <td class="lesson">
-                                                            <strong><?= htmlspecialchars($lesson['tittle']); ?></strong><br>
+                                                            <strong><?= htmlspecialchars($lesson['title']); ?></strong><br>
                                                             <?= htmlspecialchars($lesson['description']); ?>
                                                         </td>
 
-                                                        <td class="lesson-link">
-                                                            <a href="lesson.php?link=<?= $lessonLink; ?>" >Xem bài học</a>
+                                                        <td>
+                                                            <p class="hero-badge py-1 px-3 mb-3 text-white d-inline-block shadow text-uppercase rounded-pill"
+                                                                style="background-color: #fc7a57;">
+                                                                <?= htmlspecialchars($lesson['age_group']); ?>
+                                                            </p>
                                                         </td>
+
+                                                        <td class="lesson-link">
+                                                            <a href="lesson.php?link=<?= $lessonLink; ?>" class="btn btn-primary">Xem bài học</a>
+                                                        </td>
+
+
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
@@ -199,26 +199,35 @@ $conn2->close();
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                             <?php if ($currentPage > 1): ?>
-                                                <li class="page-item"><a href="?search=<?= htmlspecialchars($searchQuery); ?>&page=1"
-                                                        class="page-link">«</a></li>
-                                                <li class="page-item"><a href="?search=<?= htmlspecialchars($searchQuery); ?>&page=<?= $currentPage - 1; ?>"
-                                                        class="page-link">‹</a></li>
+                                                <li class="page-item">
+                                                    <a href="" class="page-link" onclick="goToPage(1);">Trang đầu</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a href="" class="page-link" onclick="goToPage(<?= $currentPage - 1; ?>);">Trước</a>
+                                                </li>
                                             <?php else: ?>
-                                                <li class="page-item disabled"><a href="#" class="page-link">Trước</a></li>
+                                                <li class="page-item disabled">
+                                                    <a href="" class="page-link">Trước</a>
+                                                </li>
                                             <?php endif; ?>
 
                                             <?php for ($page = 1; $page <= $totalPages; $page++): ?>
-                                                <li class="<?= $page == $currentPage ? 'active' : ''; ?>"><a
-                                                        href="?search=<?= htmlspecialchars($searchQuery); ?>&page=<?= $page; ?>" class="page-link"><?= $page; ?></a></li>
+                                                <li class="page-item <?= $page == $currentPage ? 'active' : ''; ?>">
+                                                    <a href="" class="page-link" onclick="goToPage(<?= $page; ?>);"><?= $page; ?></a>
+                                                </li>
                                             <?php endfor; ?>
 
                                             <?php if ($currentPage < $totalPages): ?>
-                                                <li class="page-item"><a
-                                                        href="?search=<?= htmlspecialchars($searchQuery); ?>&page=<?= $currentPage + 1; ?>" class="page-link">›</a></li>
-                                                <li class="page-item"><a
-                                                        href="?search=<?= htmlspecialchars($searchQuery); ?>&page=<?= $totalPages; ?>" class="page-link">»</a></li>
+                                                <li class="page-item">
+                                                    <a href="" class="page-link" onclick="goToPage(<?= $currentPage + 1; ?>);">Sau</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a href="" class="page-link" onclick="goToPage(<?= $totalPages; ?>);">Trang cuối</a>
+                                                </li>
                                             <?php else: ?>
-                                                <li class="page-item disabled"><a href="#" class="page-link">Sau</a></li>
+                                                <li class="page-item disabled">
+                                                    <a href="" class="page-link">Sau</a>
+                                                </li>
                                             <?php endif; ?>
                                         </ul>
                                     </nav>
@@ -243,65 +252,113 @@ $conn2->close();
     <?php include('include/footer.php'); ?>
 
     <script>
-        // Hàm để lọc kết quả theo môn học đã chọn
-        function filterResults() {
-            const selectedSubjects = [];
-
-            // Lấy tất cả các checkbox
-            const checkboxes = document.querySelectorAll('.form-check-input');
-
-            // Kiểm tra các checkbox nào được chọn
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    selectedSubjects.push(checkbox.value); // Lưu giá trị môn học vào mảng
-                }
+        document.querySelectorAll('.form-check-input').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                filterResults();
             });
+        });
 
-            // Gửi yêu cầu lọc kết quả về phía server
-            fetchResults(selectedSubjects);
-        }
-
-        // Hàm gửi yêu cầu AJAX để lấy kết quả lọc từ server
-        function fetchResults(selectedSubjects) {
+        function filterResults() {
+            const selectedSubjects = Array.from(document.querySelectorAll('.form-check-input:checked')).map(cb => cb.value);
             const searchQuery = document.querySelector('input[name="search"]').value;
 
-            fetch('search.php?search=' + encodeURIComponent(searchQuery) + '&subjects=' + selectedSubjects.join(',')) // Chỉnh sửa URL để gửi yêu cầu đến search.php
+            fetch(`search.php?search=${encodeURIComponent(searchQuery)}&subjects=${selectedSubjects.join(',')}&ajax=true`)
                 .then(response => response.json())
                 .then(data => {
-                    updateResults(data); // Cập nhật kết quả tìm kiếm
-                })
-                .catch(error => {
-                    console.error('Error fetching results:', error);
+                    updateResults(data.lessons);
+                    updatePagination(data.currentPage, data.totalPages);
                 });
         }
 
-        // Hàm để cập nhật kết quả hiển thị trên trang
         function updateResults(lessons) {
             const resultsTable = document.querySelector('#results tbody');
-            resultsTable.innerHTML = ''; // Xóa tất cả các kết quả hiện tại
+            resultsTable.innerHTML = '';
 
-            // Lặp qua tất cả sản phẩm và hiển thị
-            lessons.forEach(lesson => {
-                const row = document.createElement('tr');
-                row.setAttribute('data-subject-id', lesson.subject_id); // Gắn ID môn học vào mỗi dòng kết quả
+            if (lessons.length === 0) {
+                resultsTable.innerHTML = '<tr><td colspan="4" class="text-center">Không tìm thấy bài học nào.</td></tr>';
+                return;
+            }
 
-                row.innerHTML = `
-            <td class="number text-center">${lesson.id}</td>
-            <td class="image"><img src="${lesson.image}" alt=""></td>
-            <td class="lesson">
-                <strong>${lesson.tittle}</strong><br>
-                ${lesson.description}
-            </td>
-        `;
-
-                resultsTable.appendChild(row);
+            lessons.forEach((lesson, index) => {
+                const row = `
+                    <tr>
+                <td>${index + 1}</td>
+                <td><img src="${lesson.image}" alt="" class="lesson-image"></td>
+                <td>
+                    <strong>${lesson.title}</strong><br>
+                    <span>${lesson.description}</span>
+                </td>
+                <td>
+                    <a href="lesson.php?link=${lesson.lesson_link}" class="btn btn-primary">Xem bài học</a>
+                </td>
+            </tr>
+                `;
+                resultsTable.innerHTML += row;
             });
         }
 
-        // Lắng nghe sự kiện thay đổi trạng thái checkbox
-        document.querySelectorAll('.form-check-input').forEach(checkbox => {
-            checkbox.addEventListener('change', filterResults);
-        });
+        function updatePagination(currentPage, totalPages) {
+            const pagination = document.querySelector('.pagination');
+            pagination.innerHTML = '';
+
+            // Thêm nút "Trang đầu" và "Trước"
+            if (currentPage > 1) {
+                pagination.innerHTML += `
+            <li class="page-item">
+                <a href="#" class="page-link" onclick="goToPage(1);">Trang đầu</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link" onclick="goToPage(${currentPage - 1});">Trước</a>
+            </li>
+        `;
+            } else {
+                pagination.innerHTML += `
+            <li class="page-item disabled">
+                <a href="#" class="page-link">Trước</a>
+            </li>
+        `;
+            }
+
+            // Các trang giữa
+            for (let page = 1; page <= totalPages; page++) {
+                pagination.innerHTML += `
+            <li class="page-item ${page === currentPage ? 'active' : ''}">
+                <a href="#" class="page-link" onclick="goToPage(${page});">${page}</a>
+            </li>
+        `;
+            }
+
+            if (currentPage < totalPages) {
+                pagination.innerHTML += `
+            <li class="page-item">
+                <a href="#" class="page-link" onclick="goToPage(${currentPage + 1});">Sau</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link" onclick="goToPage(${totalPages});">Trang cuối</a>
+            </li>
+        `;
+            } else {
+                pagination.innerHTML += `
+            <li class="page-item disabled">
+                <a href="#" class="page-link">Sau</a>
+            </li>
+        `;
+            }
+        }
+
+        function goToPage(page) {
+            const searchQuery = document.querySelector('input[name="search"]').value;
+            const selectedSubjects = Array.from(document.querySelectorAll('.form-check-input:checked')).map(cb => cb.value);
+
+            // Gửi yêu cầu AJAX
+            fetch(`search.php?search=${encodeURIComponent(searchQuery)}&subjects=${selectedSubjects.join(',')}&page=${page}&ajax=true`)
+                .then(response => response.json())
+                .then(data => {
+                    // Cập nhật kết quả và phân trang
+                    updateResults(data.lessons);
+                    updatePagination(data.currentPage, data.totalPages);
+                });
+        }
     </script>
 
     <script src="js/hello.js"></script>

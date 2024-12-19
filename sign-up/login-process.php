@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../db.php");
+include("../include/db.php");
 
 // Kiểm tra xem form có được gửi không
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['message'] = "<p class='text-center text-danger'>Vui lòng nhập đầy đủ thông tin (vai trò, email và mật khẩu).</p>";
     } else {
         // Truy vấn cơ sở dữ liệu để xác thực thông tin đăng nhập
-        $sql = "SELECT u.user_id, u.full_name, u.password, u.date_of_birth, u.phone_number, r.role_name
+        $sql = "SELECT u.user_id, u.role_id, u.full_name, u.password, u.date_of_birth, u.phone_number, u.avatar, r.role_name
                 FROM users u
                 JOIN roles r ON u.role_id = r.id
                 WHERE u.email = ? AND r.role_name = ?";
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Nếu có người dùng khớp với thông tin
                 if ($stmt->num_rows == 1) {
                     // Liên kết kết quả
-                    $stmt->bind_result($user_id, $full_name, $hashed_password, $date_of_birth, $phone_number, $role_name);
+                    $stmt->bind_result($user_id, $role_id, $full_name, $hashed_password, $date_of_birth, $phone_number, $avatar, $role_name);
                     $stmt->fetch();
 
                     // Kiểm tra mật khẩu
@@ -43,6 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['date_of_birth'] = $date_of_birth;
                         $_SESSION['phone_number'] = $phone_number;
                         $_SESSION['role_name'] = $role_name;
+                        $_SESSION['avatar'] = $avatar;
+                        $_SESSION['role_id'] = $role_id;
 
                         // Chuyển hướng đến trang chính
                         header("Location: ../index.php");

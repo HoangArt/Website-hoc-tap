@@ -13,15 +13,8 @@
 
 
 2. Cải thiện/ Sửa
-- Cải thiện drop down menu cho người dùng
-- Thống nhất css
-- Sửa thông báo lỗi cho login.php
 - Sửa avatar người dùng
-- Về chúng tôi (about-us.php)
-- User profile
 
-### login.php
-- Tạo chức năng cho nút ghi nhớ tài khoản
 
 ### search.php
 - Tìm kiếm theo môn học

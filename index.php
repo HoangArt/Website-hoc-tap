@@ -11,7 +11,7 @@ if (isset($_SESSION['message'])) {
 
 $user_avatar_url = isset($_SESSION['avatar']) 
     ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
-    : "http://localhost/OngNho/img/avatar/default-avatar.png";
+    : "http://localhost/OngNho/img/avatar/users/default-avatar.png";
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +93,7 @@ $user_avatar_url = isset($_SESSION['avatar'])
         ?>
         <div class="container" style="margin-top: 100px;">
             <div class="text-center mb-4">
-                <h1>Khám phá các môn học chúng mình dạy</h1>
+                <h1>Các môn học chúng mình dạy</h1>
             </div>
 
             <div class="row justify-content-between align-items-center"

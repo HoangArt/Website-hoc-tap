@@ -1,16 +1,34 @@
 <?php
 session_start();
+include("../include/db.php");
 
 if (!isset($_SESSION['email'])) {
     header("Location: ../index.php");
     exit();
+
+    if ($_SESSION['role_id'] = 1) {
+        header("Location: ../index.php");
+        exit();
+    }
 }
 
+$email = $_SESSION['email'];
+$is_verified = $_SESSION['is_verified'];
 
-if ($_SESSION['role_id'] = 1) {
-    header("Location: ../index.php");
-    exit();
+$sql = "SELECT is_verified FROM users WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) {
+    $stmt->bind_result($is_verified); // Liên kết kết quả truy vấn vào biến
+    $stmt->fetch(); // Lấy giá trị của cột is_verified
+} else {
+    echo "Lỗi! Không tìm thấy người dùng với email này.";
+    $is_verified = null; // Nếu không tìm thấy, gán $is_verified = null
 }
+
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -86,7 +104,12 @@ if ($_SESSION['role_id'] = 1) {
                                                     <div class="col-12">
                                                         <label for="file" class="form-label">Tải bài tập <span class="text-danger">*</span></label>
                                                         <input type="file" class="form-control" id="file" name="file" required>
+                                                        <div class="text-muted small mt-1">
+                                                            Cho phép định dạng PDF, JPG, JPEG, GIF hoặc PNG.
+                                                            File không giới hạn kích thước.
+                                                        </div>
                                                     </div>
+
 
                                                     <!-- MÔN HỌC -->
                                                     <div class="col-12">
@@ -122,7 +145,13 @@ if ($_SESSION['role_id'] = 1) {
                                                     <!-- NÚT GỬI -->
                                                     <div class="col-12">
                                                         <div class="d-grid">
-                                                            <button class="btn btn-lg" type="submit" style="background-color: #feca73;">Tải bài tập</button>
+                                                            <?php if ($is_verified == 0): ?>
+                                                                <p class="text-danger">
+                                                                    Vui lòng xác nhận tài khoản để có thể đăng bài tập lên.</a>
+                                                                </p>
+                                                            <?php else: ?>
+                                                                <button class="btn btn-lg" type="submit" style="background-color: #feca73;">Tải bài tập</button>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
 
@@ -139,30 +168,6 @@ if ($_SESSION['role_id'] = 1) {
             </div>
         </div>
     </section>
-
-    <script>
-        document.getElementById('uploadForm').addEventListener('submit', function(e) {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-
-            // Kiểm tra kích thước file
-            const maxFileSize = 10 * 1024 * 1024; // 10MB
-            if (file.size > maxFileSize) {
-                alert('Tệp tải lên quá lớn. Vui lòng chọn tệp nhỏ hơn 10MB.');
-                e.preventDefault();
-                return;
-            }
-
-            // Kiểm tra phần mở rộng file
-            const allowedExtensions = ['jpg', 'jpeg', 'png', 'pdf', 'docx'];
-            const fileExtension = file.name.split('.').pop().toLowerCase();
-            if (!allowedExtensions.includes(fileExtension)) {
-                alert('Định dạng tệp không được chấp nhận.');
-                e.preventDefault();
-                return;
-            }
-        });
-    </script>
 
     <script src="js/hello.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

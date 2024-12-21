@@ -23,7 +23,7 @@ $file_url = "http://localhost/" . substr($file_path, strlen($document_root));
 
 $user_avatar_url = isset($_SESSION['avatar']) 
     ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
-    : "default-avatar.png";
+    : "http://localhost/OngNho/img/avatar/default-avatar.png";
 ?>
 
 <!DOCTYPE html>
@@ -107,17 +107,14 @@ $user_avatar_url = isset($_SESSION['avatar'])
                     $file_extension = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
 
                     if ($file_extension === 'pdf'): ?>
-                        <!-- PDF Viewer -->
                         <iframe src="<?= $file_url; ?>" width="100%" height="1000px" allowfullscreen></iframe>
 
                     <?php elseif (in_array($file_extension, ['jpg', 'jpeg', 'png', 'gif'])): ?>
-                        <!-- Image Viewer -->
                         <div class="image-viewer">
-                            <img src="<?= $file_path ?>" alt="Hình ảnh bài tập">
+                            <img src="<?= $file_url; ?>" alt="Hình ảnh bài tập">
                         </div>
                     <?php else: ?>
-                        <!-- Unsupported file -->
-                        <p>Định dạng file không được hỗ trợ. Vui lòng <a href="<?= $file_path ?>" download>Tải xuống</a> để xem.</p>
+                        <p>Định dạng file không được hỗ trợ. Vui lòng <a href="<?= $file_url ?>" download>Tải xuống</a> để xem.</p>
                     <?php endif; ?>
                 </div>
             <?php else: ?>

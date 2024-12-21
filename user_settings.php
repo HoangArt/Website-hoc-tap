@@ -4,6 +4,7 @@ include("include/db.php");
 
 // Thông báo tình trạng email xác nhận
 $email = $_SESSION['email'];
+$is_verified = $_SESSION['is_verified'];
 
 $sql = "SELECT is_verified FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
@@ -28,7 +29,7 @@ if ($is_verified === 0) {
 
 $user_avatar_url = isset($_SESSION['avatar'])
     ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar']
-    : "http://localhost/OngNho/img/avatar/default-avatar.png";
+    : "http://localhost/OngNho/img/avatar/users/default-avatar.png";
 
 $conn->close();
 ?>
@@ -326,7 +327,23 @@ $conn->close();
                                     </div>
                                 <?php endif; ?>
                             <?php endif; ?>
+
+                            <a href="index.php">
+                                <span class="hero-badge py-1 px-3 mb-3 text-white d-inline-block shadow text-uppercase rounded-pill"
+                                    style="background-color: #ffb700;">
+                                    &larr; Quay về trang chủ
+                                </span>
+                            </a>
+
                             <h2>Cài đặt tài khoản</h2>
+
+                            <?php if (isset($_SESSION['message'])): ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <?php echo $_SESSION['message']; ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                <?php unset($_SESSION['message']); ?>
+                            <?php endif; ?>
                         </div>
 
 
@@ -344,7 +361,9 @@ $conn->close();
                                             <button type="submit" name="action" value="delete" class="btn btn-secondary">Chọn ảnh mặc định</button>
                                         <?php endif; ?>
                                     </form>
-                                    <div class="text-muted small mt-1">Cho phép định dạng JPG, GIF, hoặc PNG. Max size of 800KB.</div>
+                                    <div class="text-muted small mt-1">
+                                        Cho phép định dạng JPG, JPEG, GIF, hoặc PNG. Giới hạn ảnh 800KB.
+                                    </div>
                                 </div>
                             </div>
 
@@ -490,15 +509,15 @@ $conn->close();
                                 <?php endif; ?>
                                 <h2>Thay đổi mật khẩu</h2>
                             </div>
-                                <?php if ($is_verified === 0): ?>
-                                    <p class="text-danger">
-                                        Vui lòng xác nhận tài khoản để thay đổi mật khẩu.</a>
-                                    </p>
-                                <?php else: ?>
-                                    <p class="text-danger">
-                                        Nếu bạn quên mật khẩu của mình, vui lòng nhấn <a href="forgot-password.php">vào đây</a>
-                                    </p>
-                                <?php endif; ?>
+                            <?php if ($is_verified == 0): ?>
+                                <p class="text-danger">
+                                    Vui lòng xác nhận tài khoản để có thể thay đổi mật khẩu.</a>
+                                </p>
+                            <?php else: ?>
+                                <p class="text-danger">
+                                    Nếu bạn quên mật khẩu của mình, vui lòng nhấn <a href="forgot-password.php">vào đây</a>
+                                </p>
+                            <?php endif; ?>
 
                         </div>
                     </div>

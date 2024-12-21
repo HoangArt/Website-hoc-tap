@@ -52,7 +52,6 @@ img.img-fluid {
 
 .courses:hover {
     background-color: #f0f0f0;
-    cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transform: translateY(-5px);
 }

@@ -19,14 +19,16 @@ if ($action === 'update') {
         // Kiểm tra định dạng tệp ảnh
         $allowed_types = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
         if (!in_array($avatar['type'], $allowed_types)) {
-            echo "Chỉ chấp nhận ảnh JPG, JPEG, PNG hoặc GIF.";
-            exit;
+            $_SESSION['message'] = "Chỉ chấp nhận ảnh JPG, JPEG, PNG hoặc GIF.";
+            header("location: ../user_settings.php");
+            exit();
         }
 
         // Kiểm tra kích thước tệp (tối đa 800KB)
         if ($avatar['size'] > 800 * 1024) {
-            echo "Kích thước tệp không được vượt quá 800KB.";
-            exit;
+            $_SESSION['message'] = "Kích thước tệp không được vượt quá 800KB.";
+            header("location: ../user_settings.php");
+            exit();
         }
 
         // Tạo tên tệp mới để tránh trùng lặp
@@ -53,15 +55,22 @@ if ($action === 'update') {
 
                 // Cập nhật thành công, cập nhật lại session
                 $_SESSION['avatar'] = $new_avatar_name;
-                header("Location: ../user_settings.php");
+                header("location: ../user_settings.php");
+                exit();
             } else {
-                echo "Có lỗi xảy ra khi cập nhật avatar.";
+                $_SESSION['message'] = "Có lỗi xảy ra khi cập nhật avatar.";
+                header("location: ../user_settings.php");
+                exit();
             }
         } else {
-            echo "Lỗi khi tải tệp lên.";
+            $_SESSION['message'] = "Lỗi khi tải tệp lên.";
+            header("location: ../user_settings.php");
+            exit();
         }
     } else {
-        echo "Vui lòng chọn tệp hình ảnh để tải lên.";
+        $_SESSION['message'] = "Vui lòng chọn tệp hình ảnh để tải lên.";
+        header("location: ../user_settings.php");
+        exit();
     }
 } elseif ($action === 'delete') {
     // Xử lý khi nhấn nút "Reset"
@@ -85,11 +94,14 @@ if ($action === 'update') {
         $_SESSION['avatar'] = $default_avatar;
         header("Location: ../user_settings.php");
     } else {
-        echo "Có lỗi xảy ra khi đặt lại avatar.";
+        $_SESSION['message'] = "Có lỗi xảy ra khi đặt lại avatar.";
+        header("location: ../user_settings.php");
+        exit();
     }
 } else {
-    echo "Hành động không hợp lệ.";
+    $_SESSION['message'] = "Hành động không hợp lệ.";
+    header("location: ../user_settings.php");
+    exit();
 }
 
 $conn->close();
-?>

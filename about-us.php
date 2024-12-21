@@ -3,7 +3,7 @@ session_start();
 
 $user_avatar_url = isset($_SESSION['avatar']) 
     ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
-    : "http://localhost/OngNho/img/avatar/default-avatar.png";
+    : "http://localhost/OngNho/img/avatar/users/default-avatar.png";
 ?>
 
 <!DOCTYPE html>
@@ -304,7 +304,7 @@ $user_avatar_url = isset($_SESSION['avatar'])
                     <div class="card-wrapper position-relative bg-white text-center px-2 pb-2 mx-auto mt-5 mb-4 mb-lg-0"
                         style="height: 340px;">
                         <div class="d-flex align-items-center justify-content-center">
-                            <i class="fa-regular fa-face-smile"
+                            <i class="fa-solid fa-file"
                                 style="font-size: 100px; margin-top: 50px; margin-bottom: 50px;"></i>
                         </div>
 

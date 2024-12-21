@@ -4,11 +4,11 @@ session_start();
 if (!isset($_SESSION['email'])) {
     header("Location: ../index.php");
     exit();
-}
-
-if ($_SESSION['role_id'] = 1) {
-    header("Location: ../index.php");
-    exit();
+    
+    if ($_SESSION['role_id'] = 1) {
+        header("Location: ../index.php");
+        exit();
+    }
 }
 
 require '../include/db2.php';
@@ -35,14 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn2->prepare("INSERT INTO lessons (subject_id, age_group, title, description, file_path, lesson_link) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->execute([$subject_id, $age_group, $title, $description, $file_path, $lesson_link]);
 
-$conn2->close();
+    $conn2->close();
 }
 ?>
 
 <html>
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://localhost/OngNho/css/styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"

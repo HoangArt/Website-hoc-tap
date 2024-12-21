@@ -63,7 +63,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 'true') {
 }
 $user_avatar_url = isset($_SESSION['avatar']) 
     ? "http://localhost/OngNho/img/avatar/users/" . $_SESSION['avatar'] 
-    : "http://localhost/OngNho/img/avatar/default-avatar.png";
+    : "http://localhost/OngNho/img/avatar/users/default-avatar.png";
     
 $conn->close();
 $conn2->close();
